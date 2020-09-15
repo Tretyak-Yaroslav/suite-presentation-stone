@@ -1,0 +1,267 @@
+<div class="office-intro-page-component" :class="{'nav-arrows-visible': navArrowsVisible}">
+    <div class="page-name">
+        {{pageTitle}}
+    </div>
+
+    <div v-if="!isOpenModal">
+        <div class="page-class" style="background-image: url(static/img/class_black.png)"></div>
+        <div class="page-class-left" style="background-image: url(static/img/logo-left_black.png)"></div>
+    </div>
+
+    <div v-else>
+        <div class="page-class" style="background-image: url(static/img/class.png)"></div>
+        <div class="page-class-left" style="background-image: url(static/img/logo-left.png)"></div>
+    </div>
+
+    <!-- <div v-if="!isOpenModal" class="saved-box" @click="toggleActiveSaved">
+        <img v-if="!activeSaved" src="static/img/saved-bookmark-black.svg" alt="" class="saved-box-icon">
+        <img v-else src="static/img/saved-bookmark.svg" alt="" class="saved-box-icon">
+        <p v-if="activeSaved" class="saved-box-counter">{{savedArray.length}}</p>
+    </div> -->
+
+    <saved-box v-if="!isOpenModal" />
+
+    <div v-if="!isOpenModal" class="stone-logo">
+        <img src="static/img/logo-black.png" alt="" class="stone-logo-icon">
+    </div>
+    
+    <details-slider2 :isSelectedLeft="selectedOffice" :isOpenModal="isOpenModal" :isOpen="open" @toggled='changeWidth'>
+        <swiper-slide>
+            <div v-if="!selectedOffice" class="left-side">
+                <div class="left-side__inner">
+                    <span class="left-side__text"><span class="bolt">Выбор</span> | Информация</span>
+                    <h2 class="left-side__title">Выбор Офиса</h2>
+                    <div class="left-side__floor floor-first" :class="{'active' : activeSegment == 1}" @click="handleSegment(1)">
+                        <h3 class="sub-title">Четверть этажа</h3>
+                        <div class="left-side__floors">
+                            <span> <span class="font">{{minQuarterArea || 0}}-{{maxQuarterArea || 0}}</span> м<span class="font">²</span></span>
+                            <!--  lass="floor" v-on:click="changeFloor(2)" :class="{active:activeFloor == 2}">-2</span> -->
+                        </div>
+                    </div>
+                    <div class="left-side__floor floor-second" :class="{'active' : activeSegment == 2}" @click="handleSegment(2)">
+                        <h3 class="sub-title">Половина этажа</h3>
+                        <div class="left-side__floors">
+                            <span><span class="font">{{minHalfArea || 0}}-{{maxHalfArea || 0}}</span> м<span class="font">²</span></span>
+                            <!--  lass="floor" v-on:click="changeFloor(2)" :class="{active:activeFloor == 2}">-2</span> -->
+                        </div>
+                    </div>
+                    <div class="left-side__floor floor-third" :class="{'active' : activeSegment == 3}" @click="handleSegment(3)">
+                        <h3 class="sub-title">Целый этаж</h3>
+                        <div class="left-side__floors">
+                            <span><span class="font">{{maxTotalArea || 0}}</span> м<span class="font">²</span></span>
+                            <!--  lass="floor" v-on:click="changeFloor(2)" :class="{active:activeFloor == 2}">-2</span> -->
+                        </div>
+                    </div>
+                     <div class="left-side__cost">
+                        <h3 class="sub-title">Стоимость</h3>
+                        <div class="range-slider">
+                            <input @change="slider" v-model.number="minPrice" min="0" max="120000" step="500" type="range" />
+                            <input @change="slider" v-model.number="maxPrice" min="0" max="120000" step="500" type="range" />
+                            <span class="range-slider-info" @change="slider">
+                                <div class="range-slider-info__left">
+                                    <input v-model.number="minPrice" type="number"  min="0" max="120000"/> млн 
+                                </div>
+                                <div class="range-slider-info__right">
+                                    <input  v-model.number="maxPrice" type="number"  min="0" max="120000"/> млн
+                                </div>
+                            </span>
+                        </div>
+                    </div> 
+                    <div class="left-side__rent">
+                        <v-select v-model="selected" :option="options" :placement="placement"></v-select> 
+                    </div>
+                </div>
+            </div>
+            <div v-else class="left-side">
+                <div @click="unSelectOffice" class="left-side__back">Выбор офиса</div>
+                <div class="left-side__inner">
+                    <span class="left-side__text"><span class="bolt">Выбор</span> | Информация</span>
+                    <h2 class="left-side__title">Лот {{activeItem.name}}</h2>
+
+                    <div id="floorWorkspace">
+                        <canvas id="floorCanvas"></canvas>
+                    </div>
+
+                    <div @click="opemModal" class="office_trigger">
+                        <img src="static/img/window.svg" alt="" class="office_trigger__icon">
+                        <p class="office_trigger__text">Виды из окон</p>
+                    </div>
+
+                    <div class="left-side__rent">
+                        <v-select v-model="selected" :option="options" :placement="placement"></v-select>
+                        <p class="select-cost">
+                            <span v-if="selected.value == 2">
+                                {{activeItem.rentMetr | money}} ₽ /мес
+                            </span>
+                            <span v-if="selected.value == 2">
+                                {{activeItem.rent_price | money}} ₽ /м² в год
+                            </span>
+                            <span v-if="selected.value == 4">
+                                {{activeItem.priceMetr | money}} ₽
+                            </span>
+                            <span v-if="selected.value == 4">
+                                {{activeItem.price | money}} ₽ /м²
+                            </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </swiper-slide>
+    </details-slider2>
+    <br>
+    <br>
+    <br>
+
+    <div class="office_modal" :class="{ 'active' : isOpenModal }">
+
+        <div class="office_modal__overlay"></div>
+
+        <span class="office_modal__close" @click="closeModal">
+            <svg>
+                <use xlink:href="#close"></use>
+            </svg>
+        </span>
+
+        <!-- сжать картинку и делать .disponse() beforeDestroy -->
+        <window-panorama v-if="isOpenModal && modalMode=='light'" class="office_modal__image" :imgSrc="'static/img/office/floor-'+selectedFloor+'-day-min.jpg'"/>
+        <window-panorama v-if="isOpenModal && modalMode=='dark'" class="office_modal__image" :imgSrc="'static/img/office/floor-'+selectedFloor+'-night-min.jpg'"/>
+
+        <!-- <img v-show="modalMode=='light'" src="static/img/download.png" alt="" class="office_modal__image">
+        <img v-show="modalMode=='dark'" src="static/img/download-night.jpg" alt="" class="office_modal__image"> -->
+    
+        <div class="office_modal__list">
+
+            <p @click="changeMode('light')" class="office_modal__list-item" :class="{ 'active' :  modalMode=='light' }">День</p>
+            <p @click="changeMode('dark')" class="office_modal__list-item" :class="{ 'active' :  modalMode=='dark' }">Ночь</p>
+        </div>
+    </div>
+
+    <div class="scheme">
+        <!-- <select onchange="scheme.controls().changeFloor(this.value)">
+            <option value="1">Floor 1</option>
+            <option value="2">Floor 2</option>
+            <option value="3">Floor 3</option>
+        </select>
+        <button value="1" onclick="scheme.controls().changeSegment(this.value)">01 четверть этажа</button>
+        <button value="2" onclick="scheme.controls().changeSegment(this.value)">02 половина этажа</button>
+        <button value="3" onclick="scheme.controls().changeSegment(this.value)">02 весь этаж</button>
+        <input type="checkbox" onclick="scheme.controls().desposition(this)">Рассадка</input> -->
+        <div ref="work1" id="workspace1" v-bind:class="{ active: open }">
+            <canvas id="canvas"></canvas>
+        </div>
+        <label class="sit-box">
+            <span class="sit-text">Рассадка</span>
+            <input class="sit-checkbox" type="checkbox" @click="toggleSeating($event)" />
+        </label>
+        <div v-if="!selectedOffice" class="parking-filters" v-bind:class="{ active: open }">
+            <div class="filter-left" v-if="!selectedOffice">
+                <div class="filter-left__head">
+                    <div class="filter-left__item-box filter-left__item-box-floor">
+                        <p class="office_list__info-title">Этаж</p>
+                        <p class="office_list__info-text">{{selectedOffice.floor}}</p>
+
+                    </div>
+                    <div class="filter-left__item-box filter-left__item-box-work">Площадь</div>
+                    <div class="filter-left__item-box filter-left__item-box-work">Раб.мест</div>
+                    <div class="filter-left__item-box">
+                        <span v-if="selected.value == 2">
+                            Аренда за м²/год
+                        </span>
+                        <span v-if="selected.value == 4">
+                            Продажа за м²
+                        </span>
+                    </div>
+                    <div class="filter-left__item-box">
+                        <span v-if="selected.value == 2">
+                            Аренда, в мес
+                        </span>
+                        <span v-if="selected.value == 4">
+                            Продажа
+                        </span>
+                    </div>
+                    <div class="filter-left__item-box filter-left__item-box-more"></div>
+                </div>
+                <div v-if="offices.length" class="filter-left__body">
+                    <div 
+                        v-for="(item, i) in offices" 
+                        class="filter-left__item" 
+                        :class="{ 'active' : activeItem && item.id == activeItem.id }" 
+                        :key="item.id" 
+                        @click="changeScheme($event, item)"
+                        v-if="item.status == 'available'"
+                    > 
+                        <!-- <svg 
+                            @click="handleSaveSection(item)" 
+                            :class="{'saved': savedArray.includes(item.id)}" 
+                            class="filter-left__item-icon"
+                        >
+                            <use xlink:href="#bookmark"></use>
+                        </svg> -->
+                        <img 
+                            v-if="!savedArray.includes(item.id)" 
+                            src="static/img/saved-bookmark-trans.svg" 
+                            class="filter-left__item-icon"
+                            @click="handleSaveSection(item)" 
+                        >
+                        <img 
+                            v-else 
+                            src="static/img/saved-bookmark.svg" 
+                            class="filter-left__item-icon"
+                            @click="handleSaveSection(item)" 
+                        >
+                        <div class="filter-left__item-box filter-left__item-box-floor">{{item.floor}}</div>
+                        <div class="filter-left__item-box filter-left__item-box-work">{{item.area | fromDotToComma}}</div>
+                        <div class="filter-left__item-box filter-left__item-box-work">{{item.id}}</div>
+                        <div class="filter-left__item-box">
+                            <span v-if="selected.value == 2">
+                                {{item.rentMetr | money | fromDotToComma}} ₽
+                            </span>
+                            <span v-if="selected.value == 4">
+                                {{item.priceMetr | money | fromDotToComma}} ₽
+                            </span>
+                        </div>
+                        <div class="filter-left__item-box">
+                            <span v-if="selected.value == 2">
+                                {{item.rent_price | money}} ₽
+                            </span>
+                            <span v-if="selected.value == 4">
+                                {{item.price | money}} ₽
+                            </span>
+                        </div>
+                        <div @click="selectOffice(item)" class="filter-left__item-box filter-left__item-box-more">
+                            <span class="filter-left__item-box-more-item">Перейти</span> 
+                            <img class="filter-left__item-box-more-item" src="static/img/more-office.svg" alt=""></div>
+                    </div>
+                </div>
+                <span v-else>
+                    Доступных оффисов нет!
+                </span>
+            </div>
+        </div>
+        <div v-else class="office_list">
+            <div class="office_list__item">
+                <span class="office_list__circle"></span>
+                <div class="office_list__info">
+                    <p class="office_list__info-title">Этаж</p>
+                    <p class="office_list__info-text">{{selectedFloor}}</p>
+                </div>
+            </div>
+            <div class="office_list__item">
+                <span class="office_list__circle"></span>
+                <div class="office_list__info">
+                    <p class="office_list__info-title">Площадь</p>
+                    <p class="office_list__info-text">{{selectedArea}} м²</p>
+                </div>
+            </div>
+            <div class="office_list__item">
+                <span class="office_list__circle"></span>
+                <div class="office_list__info">
+                    <p class="office_list__info-title">Раб.мест</p>
+                    <p class="office_list__info-text">
+                        {{activeItem.id}}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

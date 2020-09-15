@@ -1,0 +1,27 @@
+<div class="panorama-component">
+    <div class="preloader-container" v-show="loading">
+        <preloader></preloader>
+    </div>
+
+    <div class="panorama_modal" :class="{ 'active': openedModal }">
+        <div @click="closeLocationInfoModal" class="panorama_modal__overlay"></div>
+        <div class="panorama_modal__container">
+            <svg class="panorama_modal__icon" style="width: 30px; height:50px; margin-bottom: 20px;">
+                <use xlink:href="#0_person"></use>
+            </svg>
+            <p style="border-bottom: 1px solid #b9b9b9; padding-bottom: 5px;" class="panorama_modal__name">{{ name }}</p>
+            <p style="border-bottom: 1px solid #b9b9b9; padding-bottom: 5px;" v-if="name1" class="panorama_modal__name">{{ name1 }}</p>
+            <p style="border-bottom: 1px solid #b9b9b9; padding-bottom: 5px;" v-if="name2" class="panorama_modal__name">{{ name2 }}</p>
+            <p style="border-bottom: 1px solid #b9b9b9; padding-bottom: 5px;" v-if="name3" class="panorama_modal__name">{{ name3 }}</p>
+            <p style="border-bottom: 1px solid #b9b9b9; padding-bottom: 5px;" v-if="name4" class="panorama_modal__name">{{ name4 }}</p>
+            <p style="border-bottom: 1px solid #b9b9b9; padding-bottom: 5px;" v-if="name5" class="panorama_modal__name">{{ name5 }}</p>
+            <div class="panorama_modal__distance">
+                <p class="panorama_modal__text">{{ time }}</p>
+                <p class="panorama_modal__text panorama_modal__text-dot">&bull;</p>
+                <p class="panorama_modal__text">{{ distance }}</p>
+            </div>
+        </div>
+    </div>
+
+    <canvas @click="openLocationInfoModal" ref="canvas"></canvas>
+</div>

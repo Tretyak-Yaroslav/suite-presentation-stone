@@ -1,0 +1,72 @@
+$body-font-family: 'Codec Cold Trial Regular';
+$font-size-base: 14px;
+$line-height-base: 1.4;
+//
+$master-palette: (
+        primary: #fff,
+        //secondary: #939faa,
+        //info: #454c5d,
+        danger: #ea0c2a,
+
+        //success: #3ecf8e,
+        //warning: #f99400,
+);
+$color-danger: map_get($master-palette, 'danger');
+//// color transformations
+//$mix-level-4: 0;
+//$mix-level-3: 0;
+//$mix-level-2: 0;
+//$mix-level-1: 0;
+//
+$text-color: #000;
+//$muted-color: #b2b2b2;
+$link-color: $text-color;
+//
+//$fontSize-h1: 44px;
+//$fontSize-h2: 36px;
+//$fontSize-h3: 21px;
+//$fontSize-h4: 18px;
+//$fontSize-h5: 16px;
+//$fontSize-h6: 14px;
+//
+//
+//$grid-gutter-width-base: 40px;
+////
+$grid-breakpoints: (
+    xs: 768px,
+    sm: 1200px,
+    md: 1440px,
+    lg: 1900px,
+    //xl: 1400px,
+);
+//$container-max-widths: (
+//    xs: 100%,
+//    sm: 100%,
+//    md: $grid-gutter-width-base + 654,
+//    lg: $grid-gutter-width-base + 654,
+//    //xl: 1400px
+//);
+////
+////$grid-gutter-widths: (
+////    xs: $grid-gutter-width-base,
+////    sm: $grid-gutter-width-base,
+////    md: $grid-gutter-width-base,
+////    lg: $grid-gutter-width-base,
+////    //xl: $grid-gutter-width-base,
+////);
+////
+//$form-input-placeholder-color: #c7ccd6;
+//$form-input-border-radius: 0;
+//$form-input-border-color: #adadad;
+//$form-input-active-border-color: #000;
+//$form-input-bg: transparent;
+//$form-input-bg-disabled: $form-input-bg;
+//$form-input-padding-y: 0;
+//$form-input-padding-x: 0;
+//$form-field-margin-bottom: 45px;
+////
+//$button-border-radius-sm: 3px;
+//$button-border-radius-base: 24px;
+//$button-border-radius-lg: 3px;
+//$button-padding-base-y: 13px;
+//$button-padding-base-x: 30px;

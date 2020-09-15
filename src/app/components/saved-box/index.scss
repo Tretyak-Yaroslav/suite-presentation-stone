@@ -1,0 +1,49 @@
+.saved{
+  z-index: 9;
+}
+.saved-list{
+  z-index: 9;
+  position: absolute;
+  right: 160px;
+  top: 20px;
+  display: flex;
+  align-items: center;
+  &__item{
+    display: flex;
+    align-items: center;
+    margin-left: 30px;
+    cursor: pointer;
+  }
+  &__icon{
+    margin-right: 11px;
+  }
+  &__text{
+    font-family: 'Codec Cold Trial Light';
+    font-size: 18px;
+    color: #306AD0;
+  }
+}
+
+.saved-box{
+  z-index: 9;
+  position: absolute;
+  top: 0;
+  right: 100px;
+  z-index: 2;
+  cursor: pointer;
+  &-icon{
+    width: 30px;
+    height: 60px;
+    color: #555555;
+    &.saved{
+      color: #306AD0;
+    }
+  }
+  &-counter{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Codec Cold Trial Light';
+  }
+}

@@ -1,0 +1,120 @@
+<div class="lobby-page-component" :class="{'nav-arrows-visible': navArrowsVisible}">
+    <ul class="navigation-slider">
+        <li class="nav-slide item" v-bind:class="{active: activeLink === 1}">
+            <span @click="initModeOne"  v-on:click.prevent="activeLink = 1">Дизайнерское лобби</span>
+        </li>
+        <li class="nav-slide item" v-bind:class="{active: activeLink === 2}">
+            <span @click="initModeTwo"  v-on:click.prevent="activeLink = 2">Лобби А</span>
+        </li>
+        <li class="nav-slide item" v-bind:class="{active: activeLink === 3}">
+            <span @click="initModeThree"  v-on:click.prevent="activeLink = 3">Лобби Б</span>
+        </li>
+        <li class="nav-slide item" v-bind:class="{active: activeLink === 4}">
+            <span @click="initModeFour"  v-on:click.prevent="activeLink = 4">Лифты</span>
+        </li>
+    </ul>
+    <intro-title title="Дизайнерские лобби" />
+    <div class="page-name">
+        Дизайнерские лобби
+    </div>
+    <div class="page-class" style="background-image: url(static/img/class.png)"></div>
+    <div class="page-class-left" style="background-image: url(static/img/logo-left.png)"></div>
+    <img class="stone-logo" src="static/img/stone-logo.svg" alt="">
+    <!-- <div class="img-wrap" v-show="!introTitleShow">
+        <div class="img" style="background-image: url(static/img/lobby.jpg)"></div>
+    </div> -->
+
+    <div :class="{'visible': isVisibleOverlay}" class="overlay-white"></div>
+        
+    <transition name="fade">
+        <div class="img" style="background-image: url(static/img/lobby.jpg)" v-show="mode === 1"></div>
+    </transition>
+    <transition name="fade">
+        <swiper :options="swiperOption1"  @slideChange="slideChanged" class="bg-static" v-show="mode === 2">
+            <swiper-slide>
+                <!-- <div class="inner-sw"></div> -->
+                <img src="static/img/gallery/lobby-a/1.jpg" alt="">
+            </swiper-slide>
+            <swiper-slide>
+                <!-- <div class="inner-sw"></div> -->
+                <img src="static/img/gallery/lobby-a/2.jpg" alt="">
+            </swiper-slide>
+            <swiper-slide>
+                <!-- <div class="inner-sw"></div> -->
+                <img src="static/img/gallery/lobby-a/3.jpg" alt="">
+            </swiper-slide>
+            <swiper-slide>
+                <!-- <div class="inner-sw"></div> -->
+                <img src="static/img/gallery/lobby-a/4.jpg" alt="">
+            </swiper-slide>
+            <div class="swiper-bottom__pagitation-common">
+                <div class="swiper-button-prev-common" slot="button-prev"></div>
+                <div class="swiper-pagination-common" slot="pagination"></div>
+                <div class="swiper-button-next-common" slot="button-next"></div>
+            </div>
+        </swiper>
+    </transition>
+    <transition name="fade">
+        <swiper :options="swiperOption1"  @slideChange="slideChanged" class="bg-static" v-show="mode === 3">
+            <swiper-slide>
+                <!-- <div class="inner-sw"></div> -->
+                <img src="static/img/gallery/lobby-b/1.jpg" alt="">
+            </swiper-slide>
+            <swiper-slide>
+                <!-- <div class="inner-sw"></div> -->
+                <img src="static/img/gallery/lobby-b/2.jpg" alt="">
+            </swiper-slide>
+            <div class="swiper-bottom__pagitation-common">
+                <div class="swiper-button-prev-common" slot="button-prev"></div>
+                <div class="swiper-pagination-common" slot="pagination"></div>
+                <div class="swiper-button-next-common" slot="button-next"></div>
+            </div>
+        </swiper>
+    </transition>
+    <transition name="fade">
+        <swiper :options="swiperOption1"  @slideChange="slideChanged" class="bg-static" v-show="mode === 4">
+            <swiper-slide>
+                <!-- <div class="inner-sw"></div> -->
+                <img src="static/img/gallery/elevator/1.jpg" alt="">
+            </swiper-slide>
+            <swiper-slide>
+                <!-- <div class="inner-sw"></div> -->
+                <img src="static/img/gallery/elevator/2.jpg" alt="">
+            </swiper-slide>
+            <swiper-slide>
+                <!-- <div class="inner-sw"></div> -->
+                <img src="static/img/gallery/elevator/3.jpg" alt="">
+            </swiper-slide>
+            <div class="swiper-bottom__pagitation-common">
+                <div class="swiper-button-prev-common" slot="button-prev"></div>
+                <div class="swiper-pagination-common" slot="pagination"></div>
+                <div class="swiper-button-next-common" slot="button-next"></div>
+            </div>
+        </swiper>
+    </transition>
+    <details-slider>
+        <swiper-slide>
+            <div class="details-block">
+                <div class="h1">Дизайнерские лобби</div>
+
+                <div>
+                    <div class="details-grid">
+                        <div class="details-item">
+                            Гибкая организация потоков сотрудников и посетителей
+                        </div>
+                        <div class="details-item">
+                            Много света и воздуха
+                        </div>
+                        <div class="details-item">
+                            Потолки высотой более <span class="number-variable">7</span> м
+                        </div>
+
+                        <div class="details-item">
+                            Панорамные окна
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </swiper-slide>
+    </details-slider>
+</div>

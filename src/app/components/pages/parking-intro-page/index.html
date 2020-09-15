@@ -1,0 +1,153 @@
+<div class="parking-intro-page-component" :class="{'nav-arrows-visible': navArrowsVisible}">
+    <div class="page-name">
+        Двухуровневый паркинг | План
+    </div>
+    <div class="page-class" style="background-image: url(static/img/class_black.png)"></div>
+    <div class="page-class-left" style="background-image: url(static/img/logo-left_black.png)"></div>
+    <!-- <div class="img-wrap" v-show="!introTitleShow">
+        <div class="img" style="background-image: url(static/img/about.jpg)"></div>
+    </div> -->
+    <div class="stone-logo">
+        <img src="static/img/logo-black.png" alt="" class="stone-logo-icon">
+    </div>
+    <saved-box />
+
+    <ul class="parking-sectors">
+        <li class="parking-sectors__item">Занято</li>
+        <li class="parking-sectors__item">Свободно</li>
+        <li class="parking-sectors__item">Выбрано</li> 
+    </ul>
+    <details-slider2 v-if="!zoomed" :isOpen="open" @toggled='changeWidth'>
+        <swiper-slide>
+            <div class="left-side">
+                <div class="left-side__inner">
+                    <span class="left-side__text"><span class="bolt">Выбор</span> | Информация</span>
+                    <h2 class="left-side__title">Выбор Паркинга</h2>
+                    <div class="left-side__floor">
+                        <h3 class="sub-title">Этаж</h3>
+                        <div class="left-side__floors">
+                            <span class="floor" v-on:click="changeFloor(-1)" :class="{active:activeFloor == -1}">-1</span>
+                            <span class="floor" v-on:click="changeFloor(-2)" :class="{active:activeFloor == -2}">-2</span>
+                        </div>
+                    </div>
+                    <!-- <div class="left-side__cost">
+                        <h3 class="sub-title">Стоимость</h3>
+                        <div class="range-slider">
+                            <input @change="slider" v-model.number="minPrice" min="0" max="120000" step="500" type="range" />
+                            <input @change="slider" v-model.number="maxPrice" min="0" max="120000" step="500" type="range" />
+                            <span class="range-slider-info" @change="slider">
+                                <div class="range-slider-info__left">
+                                    <input v-model.number="minPrice" type="number"  min="0" max="120000"/> млн 
+                                </div>
+                                <div class="range-slider-info__right">
+                                    <input  v-model.number="maxPrice" type="number"  min="0" max="120000"/> млн
+                                </div>
+                            </span>
+                        </div>
+                    </div> -->
+                    <div class="left-side__cost">
+                        <h3 class="sub-title">Стоимость</h3>
+                        <div class="range-slider">
+                            <input @change="priceSlider" v-model.number="priceMinVal" :min="minPrice" :max="maxPrice" step="500"
+                                   type="range"/>
+                            <input @change="priceSlider" v-model.number="priceMaxVal" :min="minPrice" :max="maxPrice" step="500"
+                                   type="range"/>
+                            <span class="range-slider-info" @change="priceSlider">
+                                <div class="range-slider-info__left">
+                                    <input v-model.number="priceMinVal" type="number" :min="minPrice" :max="maxPrice"/> ₽
+                                </div>
+                                <div class="range-slider-info__right">
+                                    <input v-model.number="priceMaxVal" type="number" :min="minPrice" :max="maxPrice"/> ₽
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="left-side__rent">
+                        <v-select v-model="selected" :option="options" :placement="placement"></v-select>
+                    </div>
+                </div>
+            </div>
+        </swiper-slide>
+    </details-slider2>
+    
+    <div class="container">
+        <div class="floors-change">
+            <h3 class="sub-title">Этаж</h3>
+            <div class="left-side__floors">
+                <span class="floor" v-on:click="changeFloor(-1)" :class="{active:activeFloor == -1}">-1</span>
+                <span class="floor" v-on:click="changeFloor(-2)" :class="{active:activeFloor == -2}">-2</span>
+            </div>
+        </div>
+        <!-- <input type="checkbox" onclick="scheme.controls().parkNumbers(this)">Парковочные номера</input> -->
+        <div id="workspace" v-bind:class="{ active: open }">
+            <canvas id="canvas"></canvas>
+            <img @click="toggleOpen" :class="{'active' : !zoomed && open}" src="static/img/zoom-in.svg" alt="" class="workspace_btn">
+            <img @click="toggleOpen" :class="{'active' : zoomed}" src="static/img/zoom-out.svg" alt="" class="workspace_btn workspace_btn-out">
+        </div>
+        <div v-if="!zoomed" class="parking-filters" v-bind:class="{ active: open }">
+            <div class="filter-left">
+                <div class="filter-left__head">
+                    <div class="filter-left__item-box">Машиноместо</div>
+                    <div class="filter-left__item-box">
+                        <span v-if="selected.value == 2">
+                            Аренда за м²/мес
+                        </span>
+                        <span v-if="selected.value == 4">
+                            Продажа за м²/мес
+                        </span>
+                    </div>
+                    <div class="filter-left__item-box">
+                        <span v-if="selected.value == 2">
+                            Аренда за лот
+                        </span>
+                        <span v-if="selected.value == 4">
+                            Продажа за лот
+                        </span>
+                    </div>
+                    <div class="filter-left__item-box">Площадь</div>
+                </div>
+                <div class="filter-left__body">
+                    <div 
+                        class="filter-left__item" 
+                        v-for="item in filterByPrice" 
+                        :key="item.id" 
+                        @click="changeScheme($event, item)" 
+                        :class="{'active':activeItemsArr.includes(item.id)}"
+                        v-if="item.status == 'available'"
+                    >
+                        <img 
+                            v-if="!savedArray.includes(item.id)" 
+                            src="static/img/saved-bookmark-trans.svg" 
+                            class="filter-left__item-icon"
+                            @click="handleSaveSection(item)" 
+                        >
+                        <img 
+                            v-else 
+                            src="static/img/saved-bookmark.svg" 
+                            class="filter-left__item-icon"
+                            @click="handleSaveSection(item)" 
+                        >
+                        <div class="filter-left__item-box">{{item.name}}</div>
+                        <div class="filter-left__item-box">
+                            <span v-if="selected.value == 2">
+                                {{item.rentMetr | money}} ₽
+                            </span>
+                            <span v-if="selected.value == 4">
+                                {{item.priceMetr | money}} ₽
+                            </span>
+                        </div>
+                        <div class="filter-left__item-box">
+                            <span v-if="selected.value == 2">
+                                {{item.rent_price | money}} ₽
+                            </span>
+                            <span v-if="selected.value == 4">
+                                {{item.price | money}} ₽
+                            </span>
+                        </div>
+                        <div class="filter-left__item-box">{{item.area}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

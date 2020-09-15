@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24.17 24.17">
+    <title>info-round</title>
+    <circle cx="12.08" cy="12.08" r="11.08" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+            stroke-width="2"/>
+    <line x1="12.08" y1="10.72" x2="12.08" y2="17.45" fill="none" stroke="currentColor" stroke-linecap="round"
+          stroke-linejoin="round" stroke-width="2"/>
+    <circle cx="12.08" cy="6.57" r="1.35"/>
+</svg>

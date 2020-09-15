@@ -1,0 +1,83 @@
+<div class="init-page-component" :class="{'content-visible': mode === 3 || mode === 4}">
+    <div class="video-selector-block"  v-show="mode === 1">
+        <div class="video-selector-option-block day" @click="selectVideo('day')">
+            <div>
+                <div>
+                    <svg class="icon-day">
+                        <use xlink:href="#sun"></use>
+                    </svg>
+                </div>
+                <div>
+                    День
+                </div>
+            </div>
+        </div>
+        <div class="video-selector-option-block night" @click="selectVideo('night')">
+            <div>
+                <div>
+                    <svg class="icon-night">
+                        <use xlink:href="#moon"></use>
+                    </svg>
+                </div>
+                <div>
+                    Ночь
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <transition name="fade">
+        <div class="bg-video-wrapper" v-show="mode === 2">
+            <!-- <video-html5
+                    v-show="videoType === 'day'"
+                    src="static/video/MainScreen.mp4"
+                    :autoplay="true"
+                    :loop="true"
+                    :muted="false"
+                    fit="cover"
+                    @init="videoInited($event, 'day')"
+            ></video-html5>
+            <video-html5
+                    v-show="videoType === 'night'"
+                    src="static/video/MainScreen.mp4"
+                    :autoplay="false"
+                    :loop="false"
+                    :muted="false"
+                    fit="cover"
+                    @init="videoInited($event, 'night')"
+            ></video-html5> -->
+
+            <div class="underlay" @click="introVideoSkipStart"></div>
+
+            <div class="video-actions padding-horisontal">
+                <a @click="introVideoMuteToggle" class="volume-toggler">
+                    <svg class="icon-volume-loud" v-show="!muted">
+                        <use xlink:href="#volume-loud"></use>
+                    </svg>
+                    <svg class="icon-volume-muted" v-show="muted">
+                        <use xlink:href="#volume-muted"></use>
+                    </svg>
+                </a>
+                <a @click="introVideoSkipStart">Пропустить</a>
+            </div>
+        </div>
+    </transition>
+
+    <transition name="fade" @after-enter="imgStaticShown">
+        <div class="bg-static" style="background-image: url(static/img/about.jpg)" v-show="mode === 3 || mode === 4"></div>
+    </transition>
+
+    <div class="page-opacity" v-show="mode === 4"></div>
+    <div class="page-line_first" v-show="mode === 4"></div>
+    <div class="page-line_second" v-show="mode === 4"></div>
+    <div class="page-content" v-show="mode === 4">
+        <transition name="flip-bottom">
+            <!-- <svg class="icon-logo" v-show="mode === 4">
+                <use xlink:href="#logo"></use>
+            </svg> -->
+            <img src="static/img/logo.png" alt="">
+        </transition>
+        <img class="stone-logo" src="static/img/stone-logo.svg" alt="">
+    </div>
+</div>
+

@@ -1,0 +1,276 @@
+
+<div class="selected-objects-page-component"  :class="{'nav-arrows-visible': navArrowsVisible}">
+
+  <div v-if="!isOpenedModal && !isCompanyModal && !isPassportModal" class="stone-logo">
+      <img src="static/img/logo-black.png" alt="" class="stone-logo-icon">
+  </div>
+
+  <!-- <saved-box /> -->
+
+  <div class="left_side" :class="{'dark' : mode == 3}">
+    <p @click="goBack" class="left_side__back">
+      Назад
+    </p>
+    <div class="left_side__container">
+      <h1 class="left_side__title">Избранное</h1>
+      <div class="left_side__box">
+        <div class="left_side__header">
+          <div @click="setActiveTab('office')" class="header__item" :class="{ 'active' : activeTab == 'office' }">
+            <img src="static/img/saved/office.svg" alt="" class="header__icon">
+            <p class="header__text">Офис ({{savedOffice.length}})</p>
+          </div>
+          <div @click="setActiveTab('parking')" class="header__item" :class="{ 'active' : activeTab == 'parking' }">
+            <img src="static/img/saved/parking.svg" alt="" class="header__icon">
+            <p class="header__text">Паркинг ({{savedParking.length}})</p>
+          </div>
+          <div @click="setActiveTab('ritail')" class="header__item" :class="{ 'active' : activeTab == 'ritail' }">
+            <img src="static/img/saved/ritail.svg" alt="" class="header__icon">
+            <p class="header__text">Ритейл ({{savedRitail.length}})</p>
+          </div>
+        </div>
+
+        <div v-if="activeTab == 'office'" class="left_side__body">
+          <div v-for="item in savedOffice" :key="item.id" class="body__item">
+            <p class="body__text">Лот {{item.name}}</p>
+            <div class="body__dot"></div>
+            <p class="body__text">{{item.price | money}} ₽ /м²</p>
+            <div class="body__dot"></div>
+            <p class="body__text">{{item.floor}} Этаж</p>
+            <div class="body__dot"></div>
+            <p class="body__text">{{item.area | fromDotToComma}} м²</p>
+            
+            <span class="body__close" @click="removeFromSaved(item.id)">
+              <svg>
+                <use xlink:href="#close"></use>
+              </svg>
+            </span>
+          </div>
+        </div>
+        <div v-if="activeTab == 'parking'" class="left_side__body">
+          <div v-for="item in savedParking" :key="item.id" class="body__item">
+            <p class="body__text">Лот {{item.name}}</p>
+            <div class="body__dot"></div>
+            <p class="body__text">{{item.price | money}} ₽ /м²</p>
+            <div class="body__dot"></div>
+            <p class="body__text">{{item.floor}} Этаж</p>
+            <div class="body__dot"></div>
+            <p class="body__text">{{item.area | fromDotToComma}} м²</p>
+            
+            <span class="body__close" @click="removeFromSaved(item.id)">
+              <svg>
+                <use xlink:href="#close"></use>
+              </svg>
+            </span>
+          </div>
+        </div>
+        <div v-if="activeTab == 'ritail'" class="left_side__body">
+          <div v-for="item in savedRitail" :key="item.id" class="body__item">
+            <p class="body__text">Лот {{item.name}}</p>
+            <div class="body__dot"></div>
+            <p class="body__text">{{item.price | money}} ₽ /м²</p>
+            <div class="body__dot"></div>
+            <p class="body__text">{{item.floor}} Этаж</p>
+            <div class="body__dot"></div>
+            <p class="body__text">{{item.area | fromDotToComma}} м²</p>
+            
+            <span class="body__close" @click="removeFromSaved(item.id)">
+              <svg>
+                <use xlink:href="#close"></use>
+              </svg>
+            </span>
+          </div>
+        </div>
+
+        <div class="left_side__footer">
+          <div v-if="activeTab == 'office'" class="footer__item">
+            <p class="footer__text">Офис итого</p>
+            <p class="footer__text">{{officeTotal | money}} ₽ /м²</p>
+          </div>
+          <div v-if="activeTab == 'ritail'" class="footer__item">
+            <p class="footer__text">Ритейл итого</p>
+            <p class="footer__text">{{ritailTotal | money}} ₽ /м²</p>
+          </div>
+          <div v-if="activeTab == 'parking'" class="footer__item">
+            <p class="footer__text">Паркинг итого</p>
+            <p class="footer__text">{{parkingTotal | money}} ₽ /м²</p>
+          </div>
+          <div class="footer__item footer__item-blue">
+            <p class="footer__text">Итого</p>
+            <p class="footer__text">{{savedTotal | money}} ₽ /м²</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="right_side">
+    <div class="right_side__container">
+      <form v-if="mode == 1" @submit.prevent="firstFormSubmit" class="right_side__form">
+        <p class="right_side__text right_side__text-mb-55">Я хочу</p>
+        <label for="label1" class="right_side__label">
+          <div class="right_side__box">
+            <input 
+              type="radio" 
+              name="form-radio" 
+              :checked="firstFormValue == 'deal'" 
+              value="deal" 
+              id="label1" 
+              class="right_side__radio"
+              @change="changeRadioValue($event, 'firstFormValue')"
+            />
+          </div>
+          <span class="right_side__text">Заключить сделку</span>
+        </label>
+        <label for="label2" class="right_side__label">
+          <div class="right_side__box">
+            <input 
+              type="radio" 
+              name="form-radio" 
+              :checked="firstFormValue == 'personal_deal'" 
+              value="personal_deal" 
+              id="label2" 
+              class="right_side__radio"
+              @change="changeRadioValue($event, 'firstFormValue')"
+            />
+          </div>
+          <span class="right_side__text">Отправить персонализированное предложение</span>
+        </label>
+        <button type="submit" class="right_side__btn">Далее</button>
+      </form>
+      <form v-if="mode == 2" class="right_side__form right_side__form-second">
+        <div class="right_side__input">
+          <span class="right_side__text">Полное имя*</span>
+          <input type="text" class="right_side__input-item">
+        </div>
+        <div class="right_side__input">
+          <span class="right_side__text">Номер телефона*</span>
+          <input type="text" class="right_side__input-item">
+        </div>
+        <div class="right_side__input right_side__input-mb-0">
+          <span class="right_side__text">Адрес эл.почты*</span>
+          <input type="text" class="right_side__input-item">
+        </div>
+        <div @click="openDeal" class="right_side__btn-container">
+          <button type="submit" class="right_side__btn">Забронировать</button>
+        </div>
+        <div class="right_side__passport">
+          <p @click="openModal('isPassportModal')" class="right_side__passport-item">Паспортные данные</p>
+          <p @click="openModal('isCompanyModal')" class="right_side__passport-item">Данные компании</p>
+        </div>
+      </form>
+      <form v-if="mode == 3" class="right_side__form right_side__form-third">
+        <div class="right_side__input right_side__input-big">
+          <span class="right_side__text">WhatsApp</span>
+          <input type="text" class="right_side__input-item">
+        </div>
+        <div class="right_side__input right_side__input-big right_side__input-mb-0">
+          <span class="right_side__text">Email</span>
+          <input type="text" class="right_side__input-item">
+        </div>
+        <div @click="openPersonalDeal" class="right_side__btn-container">
+          <button type="submit" class="right_side__btn">Отправить</button>
+        </div>      
+      </form>
+      <div v-if="mode == 2" class="right_side__control">
+        <span v-if="activeTab == 'parking'" class="right_side__text">Схема паркинга</span>
+        <span v-else class="right_side__text">3D модель здания</span>
+      </div>
+    </div>
+  </div>
+
+  <div v-if="isOpenedModal" class="thank_modal">
+    <span @click="closeModal('isOpenedModal')" class="thank_modal__close">
+        <!-- <svg>
+            <use xlink:href="#close"></use>
+        </svg> -->
+    </span>
+    <div class="thank_modal__container">
+      <p class="thank_modal__title">{{modalData.title}}</p>
+      <p class="thank_modal__text">{{modalData.text}}</p>
+    </div>
+  </div>
+
+  <div v-if="isCompanyModal" class="thank_modal">
+    <span @click="closeModal('isCompanyModal')" class="thank_modal__close"></span>
+    <div class="thank_modal__container thank_modal__container-form">
+      <p class="thank_modal__title">Данные компании</p>
+      <form @submit.prevent="closeModal('isCompanyModal')" class="thank_modal__form">
+        <div class="thank_modal__form-box">
+          <div class="right_side__input right_side__input-big">
+            <span class="right_side__text">Название*</span>
+            <input type="text" class="right_side__input-item">
+          </div>
+          <div class="right_side__input right_side__input-big">
+            <span class="right_side__text">Реквизиты*</span>
+            <input type="text" class="right_side__input-item">
+          </div>
+          <div class="right_side__input right_side__input-big right_side__input-mb-0">
+            <span class="right_side__text">Контактное лицо*</span>
+            <input type="text" class="right_side__input-item">
+          </div>
+        </div>
+        <div class="thank_modal__form-box">
+          <div class="right_side__input right_side__input-big">
+            <span class="right_side__text">Адрес</span>
+            <input type="text" class="right_side__input-item">
+          </div>
+          <div class="right_side__btn-container">
+            <button type="submit" class="right_side__btn">Сохранить</button>
+          </div>  
+        </div>
+      </form>
+    </div>
+  </div>
+  
+  <div v-if="isPassportModal" class="thank_modal">
+    <span @click="closeModal('isPassportModal')" class="thank_modal__close"></span>
+    <div class="thank_modal__container thank_modal__container-form">
+      <p class="thank_modal__title">Паспортные данные</p>
+      <form @submit.prevent="closeModal('isPassportModal')" class="thank_modal__form">
+        <div class="thank_modal__form-box">
+          <div class="right_side__input right_side__input-big">
+            <span class="right_side__text">Фамилия*</span>
+            <input type="text" class="right_side__input-item">
+          </div>
+          <div class="right_side__input right_side__input-big">
+            <span class="right_side__text">Имя*</span>
+            <input type="text" class="right_side__input-item">
+          </div>
+          <div class="right_side__input right_side__input-big right_side__input-mb-0">
+            <span class="right_side__text">Отчество</span>
+            <input type="text" class="right_side__input-item">
+          </div>
+        </div>
+        <div class="thank_modal__form-box">
+          <div class="right_side__input right_side__input-big">
+            <span class="right_side__text">Дата рождения</span>
+            <input type="text" class="right_side__input-item">
+          </div>
+          <div class="right_side__input right_side__input-big">
+            <span class="right_side__text">Серия и номер паспорта*</span>
+            <input type="text" class="right_side__input-item">
+          </div>
+          <div class="right_side__input right_side__input-big right_side__input-mb-0">
+            <span class="right_side__text">Дата выдачи*</span>
+            <input type="text" class="right_side__input-item">
+          </div>
+        </div>
+        <div class="thank_modal__form-box">
+          <div class="right_side__input right_side__input-big">
+            <span class="right_side__text">Место выдачи</span>
+            <input type="text" class="right_side__input-item">
+          </div>
+          <div class="right_side__btn-container">
+            <button type="submit" class="right_side__btn">Сохранить</button>
+          </div>  
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="page-class" style="background-image: url(static/img/class_black.png)"></div>
+
+  <div v-if="mode == 3" class="page-class-left" style="background-image: url(static/img/logo-left.png)"></div>
+  <div v-else class="page-class-left" style="background-image: url(static/img/logo-left_black.png)"></div>
+
+</div>
+

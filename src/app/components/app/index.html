@@ -1,0 +1,26 @@
+<div class="app-component">
+    <!--<p>-->
+        <!--<strong>Platform:</strong>-->
+        <!--{{platform}}-->
+    <!--</p>-->
+
+    <!--<button @click="goBack">< Back</button>-->
+
+    <!--<hr>-->
+
+    <!--<div v-for="build in builds">-->
+        <!--<pre>{{build}}</pre>-->
+
+        <!--<button @click="startBuild(build)">{{build.internal_name}}</button>-->
+    <!--</div>-->
+
+    <div style="display: none;">
+        <svg-sprite></svg-sprite>
+    </div>
+
+    <transition>
+        <router-view class="router-view"></router-view>
+    </transition>
+
+    <navigation></navigation>
+</div>

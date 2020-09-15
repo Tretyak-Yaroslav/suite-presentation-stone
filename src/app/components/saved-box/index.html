@@ -1,0 +1,21 @@
+<div class="saved">
+  <div v-if="activeSaved" class="saved-list">
+    <div @click="goToSaved('ritail')" class="saved-list__item">
+        <img src="static/img/saved/ritail.svg" alt="" class="saved-list__icon">
+        <span class="saved-list__text">{{savedRitail.length}}</span>
+    </div>
+    <div @click="goToSaved('office')" class="saved-list__item">
+        <img src="static/img/saved/office.svg" alt="" class="saved-list__icon">
+        <span class="saved-list__text">{{savedOffice.length}}</span>
+    </div>
+    <div @click="goToSaved('parking')" class="saved-list__item">
+        <img src="static/img/saved/parking.svg" alt="" class="saved-list__icon">
+        <span class="saved-list__text">{{savedParking.length}}</span>
+    </div>
+  </div>
+  <div class="saved-box" @click="toggleActiveSaved">
+      <img v-if="!savedItems.length" src="static/img/saved-bookmark-black.svg" alt="" class="saved-box-icon">
+      <img v-else src="static/img/saved-bookmark.svg" alt="" class="saved-box-icon">
+      <p v-if="savedItems.length" class="saved-box-counter">{{savedItems.length}}</p>
+  </div>
+</div>

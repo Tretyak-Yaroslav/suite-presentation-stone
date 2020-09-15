@@ -1,0 +1,117 @@
+<div class="location-page-component" :class="{'nav-arrows-visible': navArrowsVisible}">
+    <intro-title title="Локация" />
+    <div class="page-name">
+        Локация 
+        <transition name="fade">
+            <span v-if="pageSuffix" class="page-name page-name-bold">| {{pageSuffix}}</span>
+        </transition>
+    </div>
+    <div class="page-class" style="background-image: url(static/img/class.png)"></div>
+    <div class="page-class-left" style="background-image: url(static/img/logo-left.png)"></div>
+    <img class="stone-logo" src="static/img/stone-logo.svg" alt="">
+    <!-- <video-html5
+            class="page-video"
+            src="static/video/park.mp4"
+            :autoplay="true"
+            :loop="true"
+            :muted="true"
+            fit="cover"
+    ></video-html5> -->
+
+    <div class="location_plan" :class="{'visible' : isPlanVisible}">
+        <span class="location_plan__close" @click="closePlan">
+            <svg>
+                <use xlink:href="#close"></use>
+            </svg>
+        </span>
+        <div class="location_plan__overlay"></div>
+        <img src="static/img/location/sit-plan.png" alt="" class="location_plan__image">
+    </div>
+
+    <!-- <div class="location_plan" :class="{'visible' : isMapVisible}">
+        <span class="location_plan__close" @click="closeMap">
+            <svg>
+                <use xlink:href="#close"></use>
+            </svg>
+        </span>
+        <div class="location_plan__overlay"></div>
+        <img src="static/img/location/area-map-cropped-top.png" alt="" class="location_plan__image location_plan__image-map">
+    </div> -->
+
+    <div class="location_plan location_plan-video" :class="{'visible' : isVideoVisible}">
+        <span class="location_plan__close" @click="closeVideo">
+            <svg>
+                <use xlink:href="#close"></use>
+            </svg>
+        </span>
+        <transition name="fade">
+            <img @click="startVideo" v-if="!videoPlay" src="static/img/play.svg" alt="" class="location_plan__play">
+        </transition>
+        <transition name="fade">
+            <div class="location_plan__overlay" v-if="!videoPlay"></div>
+        </transition>
+        <video ref="locationVideo" class="location_plan__image" :controls="videoPlay" poster="static/img/download.png">
+            <source src="static/video/location/location-video.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+          </video>
+        <img src="static/img/location/sit-plan.png" alt="" class="location_plan__image">
+    </div>
+
+    <div class="img-wrap">
+        <!-- <div class="img" style="background-image: url(static/img/download.png)"></div> -->
+        <panorama :src="map.img" :angle="map.angle" :points="filteredPoints"></panorama>
+    </div>
+    <div class="location-sectors">
+        <ul class="location-sectors__list">
+            <li @click="changePoints('all')" class="location-sectors__item location-sectors__item-all">Все категории</li>
+            <li @click="changePoints('p')" class="location-sectors__item location-sectors__item-p">Кафе и рестораны</li>
+            <li @click="changePoints('r')" class="location-sectors__item location-sectors__item-r">Магазины</li>
+            <li @click="changePoints('pur')" class="location-sectors__item location-sectors__item-pur">Салоны красоты</li>
+            <li @click="changePoints('b')" class="location-sectors__item location-sectors__item-b">Жилые Комплексы</li>
+            <li @click="changePoints('w')" class="location-sectors__item location-sectors__item-w">Транспорт</li>
+            <li @click="changePoints('lb')" class="location-sectors__item location-sectors__item-lb">Офисные центры</li>
+            <li @click="changePoints('y')" class="location-sectors__item location-sectors__item-y">Медицинские учреждения</li>
+            <li @click="changePoints('g')" class="location-sectors__item location-sectors__item-g">Фитнес</li>
+        </ul>
+    </div>
+    <ul class="location-links">
+        <li class="location-links__item">
+            <span class="icon icon-video" @click="openVideo"></span>
+        </li>
+        <li class="location-links__item" @click="openPlan">
+            <span class="icon icon-location"></span>
+        </li>
+        <!-- <li class="location-links__item">
+            <span class="icon icon-car" @click="openMap"></span>
+        </li> -->
+    </ul>
+    <!-- <div class="popup">
+        <h3>test</h3>
+        <p>test</p>
+    </div> -->
+    <details-slider>
+        <swiper-slide>
+            <div class="details-block">
+                <div class="h1">Удобное расположение в центре Москвы</div>
+
+                <div>
+                    <div class="details-grid">
+                        <div class="details-item">
+                            м. «Белорусская-кольцевая» - <span class="number-variable">8</span> мин.
+                        </div>
+                        <div class="details-item">
+                            м. «Белорусская-радиальная» - <span class="number-variable">10</span> мин.
+                        </div>
+                        <div class="details-item">
+                            м. «Савеловская» - <span class="number-variable">12</span> мин.
+                        </div>
+
+                        <div class="details-item">
+                            м. «Менделеевская» - <span class="number-variable">12</span> мин.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </swiper-slide>
+    </details-slider>
+</div>

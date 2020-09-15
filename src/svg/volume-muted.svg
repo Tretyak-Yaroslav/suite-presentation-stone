@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.7 32.96">
+    <title>volume-muted</title>
+    <path d="M-336.08,33.22H-330l8.05-9a1.13,1.13,0,0,1,1.59-.15,1.13,1.13,0,0,1,.41.9V54.59a1.17,1.17,0,0,1-1.16,1.18,1.17,1.17,0,0,1-.89-0.4l-7.78-8.79-7.36.07V34.28A1.07,1.07,0,0,1-336.08,33.22Z"
+          transform="translate(337.64 -23.31)" fill="none" stroke="currentColor" stroke-miterlimit="10"/>
+    <line x1="23.18" y1="13.44" x2="30.2" y2="20.48" fill="none" stroke="currentColor" stroke-linecap="round"
+          stroke-linejoin="round"/>
+    <line x1="30.2" y1="13.44" x2="23.17" y2="20.48" fill="none" stroke="currentColor" stroke-linecap="round"
+          stroke-linejoin="round"/>
+</svg>

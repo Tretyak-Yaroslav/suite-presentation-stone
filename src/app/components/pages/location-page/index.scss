@@ -1,0 +1,306 @@
+.location-page-component{
+  height: 100vh;
+  background-color: #fff;
+  color: #fff;
+  overflow: hidden;
+
+  .page-name{
+    z-index: 7;
+    &-bold{
+      position: static;
+      top: unset;
+      left: unset;
+      font-weight: 600;
+    }
+  }
+
+  .location_plan{
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    z-index: 6;
+    opacity: 0;
+    visibility: hidden;
+    transition: all .6s ease-out;
+    &-video{
+      z-index: 16;
+    }
+    &__play{
+      z-index: 3;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 40px;
+      cursor: pointer;
+    }
+    &.visible{
+      opacity: 1;
+      visibility: visible;
+    }
+    &__close{
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      z-index: 3;
+      cursor: pointer;
+      svg{
+        width: 25px;
+        height: 25px;
+      }
+    }
+    &__image{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      &-map{
+        // object-position: center -250px;
+      }
+    }
+    &__overlay{
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      top: 0;
+      background: rgba(0, 0, 0, 0.5);
+    }
+  }
+  .page-video{
+    height: 100vh;
+  }
+  .panorama-container{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+  .panorama-component, .panorama-tour-component{
+    width: 100%;
+    height: 100%;
+  }
+  .img-wrap{
+    height: 100vh;
+    transition-duration: .7s;
+    transition-delay: 1.3s;
+  }
+  .img{
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: cover;
+  }
+  .details-block{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .h1{
+      font-size: 60px;
+      font-family: 'Codec Cold Trial Bold';
+      margin-bottom: 3rem;
+      max-width: 1080px;
+      text-align: left; 
+      width: 70rem;
+    }
+    .details-grid{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      width: 70rem;
+      max-width: 1080px;
+      flex-direction: row;
+    }
+    .details-item{
+      font-size: 22px;
+      position: relative;
+      border-bottom: 1px solid transparent;
+      padding: 15px 0 15px 30px;
+      width: 500px;
+      max-width: 49%;
+      &::before{
+        content: '';
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #fff;
+        position: absolute;
+        left: 0;
+        top: 28px;
+        display: block;
+      }
+    }
+  }
+
+  & ~ .navigation-component{
+    .arrow-toggler{
+      transition: all .7s ease;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+  }
+  &.nav-arrows-visible{
+    & ~ .navigation-component{
+      .arrow-toggler{
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  }
+  canvas{
+    height: 100%!important;
+  }
+  .location-sectors{
+    position: absolute;
+    top: 100px;
+    left: 30px;
+    z-index: 5;
+    &__list{
+      position: relative;
+      display: block;
+      padding-left: 0;
+    }
+    &__item{
+      position: relative;
+      display: block;
+      list-style: none;
+      padding-left: 40px;
+      font-family: 'Codec Cold Trial Light';
+      font-size: 18px;
+      line-height: 40px;
+      cursor: pointer;
+      text-shadow: 0 0 4px rgba(0, 0, 0, .5);
+      // text-shadow: -1px 1px 0 #313131, 1px 1px 0 #313131, 1px -1px 0 #313131, -1px -1px 0 #313131;
+      &:before{
+        content: '';
+        width: 15px;
+        height: 15px;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 0;
+        border-radius: 50%;
+      }
+      &-all{
+        &::before{
+          background: #313131;
+        }
+      }
+      &-w{
+        &::before{
+          background: #fff;
+        }
+      }
+      &-r{
+        &::before{
+          background: #ef5939;
+        }
+      }
+      &-b{
+        &::before{
+          background: #306ad0;
+        }
+      }
+      &-g{
+        &::before{
+          background: #2A622E;
+        }
+      }
+      &-lb{
+        &::before{
+          background: #3498db;
+        }
+      }
+      &-p{
+        &::before{
+          background: #E8808A;
+        }
+      }
+      &-pur{
+        &::before{
+          background: #BD7CB7;
+        }
+      }
+      &-y{
+        &::before{
+          background: #ffe598;
+        }
+      }
+      // &:nth-child(1){
+      //   &::before{
+      //     background: #E8808A;
+      //   }
+      // }
+      // &:nth-child(2){
+      //   &::before{
+      //     background: #EF5939;
+      //   }
+      // }
+      // &:nth-child(3){
+      //   &::before{
+      //     background: #FFD765;
+      //   }
+      // }
+      // &:nth-child(4){
+      //   &::before{
+      //     background: #306AD0;
+      //   }
+      // }
+      // &:nth-child(5){
+      //   &::before{
+      //     background: #fff;
+      //   }
+      // }
+      &::selection{
+        background: transparent;
+      }
+    }
+  }
+  .location-links{
+    position: absolute;
+    display: block;
+    bottom: 120px;
+    right: 30px;
+    padding-left: 0;
+    list-style: none;
+    &__item{
+      display: block;
+      margin-bottom: 42px;
+      cursor: pointer;
+      &:last-child{
+        margin-bottom: 0;
+      }
+      .icon{
+        display: block;
+      }
+      .icon-video{
+        width: 31px;
+        height: 24px;
+        background: url(../static/img/icon-video.png);
+      }
+      .icon-location{
+        width: 31px;
+        height: 25px;
+        background: url(../static/img/icon-location.png);
+      }
+      .icon-car{
+        width: 28px;
+        height: 25px;
+        background: url(../static/img/icon-car.png);
+      }
+    }
+  }
+  .popup{
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 300px;
+    background: #fff;
+  }
+}

@@ -1,0 +1,135 @@
+.details-slider-component2{
+  header{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: #fff;
+    text-align: center;
+    font-size: 6px;
+    z-index: 9;
+    > a{
+      display: inline-block;
+      padding: 25px;
+    }
+    .icon{
+      display: block;
+      background-color: currentColor;
+      width: 80px;
+      height: 3px;
+    }
+  }
+
+  main{
+    position: absolute;
+    z-index: 11;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    overflow: hidden;
+    &.v-enter-active, &.v-leave-active{
+      &, .content{
+        transition: all .5s ease;
+      }
+    }
+    &.v-enter-active{
+      .content{
+        transform: translateX(-590px);
+      }
+    }
+    &.v-enter-to{
+      .content{
+        transform: translateX(0);
+      }
+    }
+    &.v-leave-active{
+      .content{
+        transform: translateX(0);
+      }
+    }
+    &.v-leave-to{
+      .content{
+        transform: translateX(-590px);
+      }
+    }
+  }
+  .underlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+  }
+  .content{
+    position: relative;
+    background-color: map_get($master-palette, 'primary');
+    color: #fff;
+    height: 100%;
+    overflow: auto;
+    transition: all .3s ease;
+  }
+
+  .swiper-container{
+    height: 100%;
+  }
+  .swiper-slide{
+  }
+  .swiper-pagination{
+    bottom: 0;
+    font-size: 6px;
+    padding: 25px;
+    .swiper-pagination-bullet{
+      width: 1em;
+      height: 1em;
+      margin: 0 .5em;
+      background-color: currentColor;
+      opacity: .6;
+      &.swiper-pagination-bullet-active{
+        background-color: currentColor;
+        opacity: 1;
+      }
+    }
+  }
+
+  .btn-close{
+    position: absolute;
+    z-index: 2;
+    position: absolute;
+    top: 20px;
+    left: 30px;
+    color: #000;
+  }
+  .inside{
+    position: absolute;
+    bottom: 60px;
+    right: 0;
+    margin: 0 15% 0 0;
+    z-index: 5;
+    span{
+      display: block;
+      width: 225px;
+      height: 50px;
+      font-size: 18px;
+      line-height: 48px;
+      border: 1px solid #000;;
+      text-align: center;
+      transition: .2s;
+      color: #000;
+      &:hover{
+        background: #000;
+        color: #fff;
+      }
+    }
+  }
+  &.style-light{
+    .content{
+      background-color: #fff;
+      color: #000;
+      //color: map_get($master-palette, 'primary');
+    }
+  }
+  .slider-more{
+    color: #000;
+    z-index: 99;
+  }
+}

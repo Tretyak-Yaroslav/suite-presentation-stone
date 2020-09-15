@@ -1,0 +1,143 @@
+.init-page-component{
+  height: 100%;
+  
+  .video-selector-block{
+    height: 100%;
+    display: flex;
+    align-items: stretch;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: cover;
+    .video-selector-option-block{
+      width: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.2rem;
+      text-align: center;
+      color: #fff;
+      font-weight: 300;
+      cursor: pointer;
+      &.day{
+        background-color: transparentize(map_get($master-palette, 'primary'), .3);
+      }
+      &.night{
+        background-color: transparentize(#000, .3);
+      }
+    }
+    .icon-day{
+      width: 1.8rem;
+      height: 1.8rem;
+      margin-bottom: .9rem;
+    }
+    .icon-night{
+      width: 1.8rem;
+      height: 1.8rem;
+      margin-bottom: .9rem;
+    }
+  }
+  .bg-video-wrapper{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition-duration: .7s;
+    .video-html5-component{
+      height: 100%;
+    }
+    .underlay{
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+    .video-actions{
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      font-size: 1.2rem;
+      font-weight: 300;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;
+      pointer-events: none;
+      .icon-volume-loud{
+        width: 1.7rem;
+        height: 1.6rem;
+      }
+      .icon-volume-muted{
+        width: 1.5rem;
+        height: 1.6rem;
+      }
+      > *{
+        pointer-events: all;
+      }
+      .volume-toggler{
+        padding: 20px;
+        margin: -20px;
+      }
+    }
+    &.fade-enter-active{
+      transition: none;
+    }
+  }
+
+  .bg-static{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: auto;
+    min-height: 100%;
+    min-width: 100%;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: cover;
+    transition-duration: .7s;
+    transition-delay: .7s;
+  }
+  .page-opacity{
+    position: absolute;
+    background: rgba(0,0,0,0.7);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+  }
+  
+  .page-content{
+    position: relative;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img{
+      display: block;
+      width: 600px;
+    }
+  }
+  .icon-logo{
+    width: 22rem;
+    height: 6.8rem;
+    color: #fff;
+    transition-duration: .7s;
+  }
+
+  & ~ .navigation-component{
+    display: none;
+  }
+  &.content-visible{
+    & ~ .navigation-component{
+      display: block;
+      header, .arrow-toggler{
+        animation: flip-from-bottom .7s ease 1;
+      }
+    }
+  }
+}

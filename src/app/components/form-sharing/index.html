@@ -1,0 +1,45 @@
+<div class="form-sharing-component">
+    <form novalidate @submit.prevent="submit">
+        <div class="h1 u-text-center">Поделиться</div>
+
+        <div class="form-body" :disabled="loading">
+            <!--<pre>{{client}}</pre>-->
+            <!--<pre>{{form}}</pre>-->
+            <div class="l-row">
+                <div class="l-col l-col-6@xs">
+                    <div class="placement-item" v-for="(villa, index) in villas">
+                        <div class="placement-item-block">
+                            <div class="placement-name">{{villa.name}}</div>
+                            <a @click="villaRemove(index)">
+                                <svg class="icon-remove">
+                                    <use xlink:href="#close"></use>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="l-col l-col-6@xs">
+                    <div class="control-wrap">
+                        <label>Email</label>
+                        <input class="form-control" type="email" v-model="form.email"
+                               :class="{'is-danger': $v.form.email.$error}"
+                        >
+                        <div class="control-error" v-show="touched && !$v.form.email.email">
+                            Неверный формат адреса электронной почты.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-actions">
+            <div class="l-row">
+                <div class="l-col l-col-6@xs u-text-right">
+                    <preloader v-show="loading"></preloader>
+                </div>
+                <div class="l-col l-col-6@xs">
+                    <a class="btn-submit" @click="submit" :disabled="loading">Отправить</a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

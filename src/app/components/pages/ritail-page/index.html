@@ -1,0 +1,100 @@
+<div class="ritail-page-component" :class="{'nav-arrows-visible': navArrowsVisible}">
+    
+    <ul class="navigation-slider">
+        <li class="nav-slide item" v-bind:class="{active: mode === 1}">
+            <span @click="initModeOne" >Ритейл</span>
+        </li>
+        <li class="nav-slide item" v-bind:class="{active: mode === 2}">
+            <span @click="initModeTwo" >Торговая галерея <span class="number-variable">1</span>й этаж</span>
+        </li>
+        <li class="nav-slide item" v-bind:class="{active: mode === 3}">
+            <span @click="initModeThree" >Торговая галерея <span class="number-variable">2</span>й этаж</span>
+        </li>
+    </ul>
+
+    <intro-title title="Ритейл и торговая галерея" />
+    <div class="page-name">
+        Ритейл и торговая галерея
+    </div>
+
+    <vr-tour-btn />
+    
+    <div class="page-class" style="background-image: url(static/img/class.png)"></div>
+    <div class="page-class-left" style="background-image: url(static/img/logo-left.png)"></div>
+    <img class="stone-logo" src="static/img/stone-logo.svg" alt="">
+
+    <div :class="{'visible': isVisibleOverlay}" class="overlay-white"></div>
+
+    <transition name="fade">
+        <div class="img-wrap" v-show="mode === 1">
+            <div class="img" style="background-image: url(static/img/ritail/ritail.jpg)"></div>
+        </div>
+    </transition>
+    <transition name="fade">
+        <swiper :options="swiperOption1"  @slideChange="slideChanged" class="bg-static" v-show="mode === 2">
+            <swiper-slide>
+                <!-- <div class="inner-sw"></div> -->
+                <img src="static/img/gallery/salegallery-1/1.jpg" alt="">
+            </swiper-slide>
+            <swiper-slide>
+                <!-- <div class="inner-sw"></div> -->
+                <img src="static/img/gallery/salegallery-1/2.jpg" alt="">
+            </swiper-slide>
+            <div class="swiper-bottom__pagitation-common">
+                <div class="swiper-button-prev-common" slot="button-prev"></div>
+                <div class="swiper-pagination-common" slot="pagination"></div>
+                <div class="swiper-button-next-common" slot="button-next"></div>
+            </div>
+        </swiper>
+    </transition>
+    <transition name="fade">
+        <swiper :options="swiperOption1" @slideChange="slideChanged" class="bg-static" v-show="mode === 3">
+            <swiper-slide>
+                <!-- <div class="inner-sw"></div> -->
+                <img src="static/img/gallery/salegallery-2/1.jpg" alt="">
+            </swiper-slide>
+            <swiper-slide>
+                <!-- <div class="inner-sw"></div> -->
+                <img src="static/img/gallery/salegallery-2/2.jpg" alt="">
+            </swiper-slide>
+            <div class="swiper-bottom__pagitation-common">
+                <div class="swiper-button-prev-common" slot="button-prev"></div>
+                <div class="swiper-pagination-common" slot="pagination"></div>
+                <div class="swiper-button-next-common" slot="button-next"></div>
+            </div>
+        </swiper>
+    </transition>
+
+    <div class="inside"><router-link to="/ritail/ritail-intro">Подобрать</router-link></div>
+    <details-slider>
+        <swiper-slide>
+            <div class="details-block">
+                <div class="h1">Ритейл и торговая галерея</div>
+                <div>
+                    <div class="details-grid">
+                        <div class="details-item">
+                            От <span class="number-variable">85</span> м<sup><span class="number-variable">2</span></sup>
+                        </div>
+                        <div class="details-item">
+                            <span class="number-variable">1</span>-я линия, отдельные входы с улицы
+                        </div>
+                        <div class="details-item">
+                            Витрины и места для вывесок
+                        </div>
+
+                        <div class="details-item">
+                            Высокие потолки (до <span class="number-variable">8</span> м)
+                        </div>
+                        <div class="details-item">
+                            Возможность возведения антресоли
+                        </div>
+                        <div class="details-item">
+                            Новейшие инженерные системы
+                        </div>
+                        <div class="inside"><router-link to="/ritail/ritail-intro">Подобрать</router-link></div>
+                    </div>
+                </div>
+            </div>
+        </swiper-slide>
+    </details-slider>
+</div>

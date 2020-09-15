@@ -1,0 +1,49 @@
+<div class="architecture-page-component" :class="{'nav-arrows-visible': navArrowsVisible}">
+    <intro-title title="Архитектура" />
+    <div class="page-name">
+        Архитектура
+    </div>
+    <!-- <div class="inside inside-top">
+        <a @click="handleTour">ЗD-тур</a>
+    </div> -->
+
+    <vr-tour-btn />
+    
+    <div :class="{'visible': isVisibleOverlay}" class="overlay-white"></div>
+
+    <div class="page-class" style="background-image: url(static/img/class.png)"></div>
+    <div class="page-class-left" style="background-image: url(static/img/logo-left.png)"></div>
+    <img class="stone-logo" src="static/img/stone-logo.svg" alt="">
+    <swiper @slideChange="slideChanged" :options="swiperOption1" class="bg-static">
+        <swiper-slide>
+            <!-- <div class="inner-sw"></div> -->
+            <img src="static/img/gallery/architecture/1.jpg" alt="">
+        </swiper-slide>
+        <swiper-slide>
+            <!-- <div class="inner-sw"></div> -->
+            <img src="static/img/gallery/architecture/2.jpg" alt="">
+        </swiper-slide>
+        <div class="swiper-bottom__pagitation-common">
+            <div class="swiper-button-prev-common" slot="button-prev"></div>
+            <div class="swiper-pagination-common" slot="pagination"></div>
+            <div class="swiper-button-next-common" slot="button-next"></div>
+        </div>
+    </swiper>
+    <details-slider>
+        <swiper-slide>
+            <div class="details-block">
+                <div class="h1">Современная архитектура</div>
+                <div>
+                    <div class="details-grid">
+                        <div class="details-item">
+                            Фасады из премиального облицовочного материала – юрского мрамора
+                        </div>
+                        <div class="details-item">
+                            Панорамное остекление с сокращением межоконных простенков по мере подъема на верхние этажи
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </swiper-slide>
+    </details-slider>
+</div>

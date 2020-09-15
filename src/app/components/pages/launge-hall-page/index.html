@@ -1,0 +1,132 @@
+ <div class="launge-hall-page-component" :class="{'nav-arrows-visible': navArrowsVisible}">
+    <!-- <ul class="navigation-slider">
+        <li class="nav-slide item" v-bind:class="{active: activeLink === 1}">
+            <span @click="initModeOne"  v-on:click.prevent="activeLink = 1">Lounge Hall</span>
+        </li>
+        <li class="nav-slide item" v-bind:class="{active: activeLink === 2}">
+            <span @click="initModeTwo"  v-on:click.prevent="activeLink = 2">Торговая галерея <span class="number-variable">1</span>й этаж</span>
+        </li>
+        <li class="nav-slide item" v-bind:class="{active: activeLink === 3}">
+            <span @click="initModeThree"  v-on:click.prevent="activeLink = 3">Торговая галерея <span class="number-variable">2</span>й этаж</span>
+        </li>
+    </ul> -->
+    <intro-title title="Lounge Hall" />
+    <div class="page-name">
+        Lounge Hall
+    </div>
+    <div class="page-class" style="background-image: url(static/img/class.png)"></div>
+    <div class="page-class-left" style="background-image: url(static/img/logo-left.png)"></div>
+    <img class="stone-logo" src="static/img/stone-logo.svg" alt="">
+    <!-- <div class="img-wrap" v-show="!introTitleShow">
+        <div class="img" style="background-image: url(static/img/lobby.jpg)"></div>
+    </div> -->
+
+    <div :class="{'visible': isVisibleOverlay}" class="overlay-white"></div>
+        
+    <!-- <swiper @slideChange="slideChanged" :options="swiperOption2" class="bg-static" v-show="mode === 2">
+        <swiper-slide>
+            <img src="static/img/topgarden/1.jpg" alt="">
+        </swiper-slide>
+        <swiper-slide>
+            <img src="static/img/topgarden/2.jpg" alt="">
+        </swiper-slide>
+        <swiper-slide>
+            <img src="static/img/topgarden/3.jpg" alt="">
+        </swiper-slide>
+        <div class="swiper-bottom__pagitation-common">
+            <div class="swiper-button-prev-common" slot="button-prev"></div>
+            <div class="swiper-pagination-common" slot="pagination"></div>
+            <div class="swiper-button-next-common" slot="button-next"></div>
+        </div>
+    </swiper> -->
+    <transition name="fade">
+        <swiper :options="swiperOption1"  @slideChange="slideChanged" class="bg-static">
+            <swiper-slide>
+                <!-- <div class="inner-sw"></div> -->
+                <img src="static/img/gallery/laungehall/1.jpg" alt="">
+            </swiper-slide>
+            <swiper-slide>
+                <!-- <div class="inner-sw"></div> -->
+                <img src="static/img/gallery/laungehall/2.jpg" alt="">
+            </swiper-slide>
+            <swiper-slide>
+                <!-- <div class="inner-sw"></div> -->
+                <img src="static/img/gallery/laungehall/3.jpg" alt="">
+            </swiper-slide>
+            <div class="swiper-bottom__pagitation-common">
+                <div class="swiper-button-prev-common" slot="button-prev"></div>
+                <div class="swiper-pagination-common" slot="pagination"></div>
+                <div class="swiper-button-next-common" slot="button-next"></div>
+            </div>
+        </swiper>
+        <!-- <div class="img" style="background-image: url(static/img/lounge.jpg)" v-show="mode === 1"></div> -->
+    </transition>
+    <!-- <transition name="fade">
+        <swiper :options="swiperOption1"  @slideChange="slideChanged" class="bg-static" v-show="mode === 2">
+            <swiper-slide>
+                <img src="static/img/topgarden/1.jpg" alt="">
+            </swiper-slide>
+            <swiper-slide>
+                <img src="static/img/topgarden/2-min.jpg" alt="">
+            </swiper-slide>
+            <swiper-slide>
+                <img src="static/img/topgarden/3-min.jpg" alt="">
+            </swiper-slide>
+            <div class="swiper-bottom__pagitation-common">
+                <div class="swiper-button-prev-common" slot="button-prev"></div>
+                <div class="swiper-pagination-common" slot="pagination"></div>
+                <div class="swiper-button-next-common" slot="button-next"></div>
+            </div>
+        </swiper>
+    </transition>
+    <transition name="fade">
+        <swiper :options="swiperOption1" @slideChange="slideChanged" class="bg-static" v-show="mode === 3">
+            <swiper-slide>
+                <img src="static/img/topgarden/4-min.jpg" alt="">
+            </swiper-slide>
+            <swiper-slide>
+                <img src="static/img/topgarden/5-min.jpg" alt="">
+            </swiper-slide>
+            <swiper-slide>
+                <img src="static/img/topgarden/6-min.jpg" alt="">
+            </swiper-slide>
+            <swiper-slide>
+                <img src="static/img/topgarden/7-min.jpg" alt="">
+            </swiper-slide>
+            <swiper-slide>
+                <div class="inner-sw"></div>
+                <img src="static/img/topgarden/8-min.jpg" alt="">
+            </swiper-slide>
+            <swiper-slide>
+                <img src="static/img/topgarden/9-min.jpg" alt="">
+            </swiper-slide>
+            <div class="swiper-bottom__pagitation-common">
+                <div class="swiper-button-prev-common" slot="button-prev"></div>
+                <div class="swiper-pagination-common" slot="pagination"></div>
+                <div class="swiper-button-next-common" slot="button-next"></div>
+            </div>
+        </swiper>
+    </transition> -->
+    
+    <details-slider>
+        <swiper-slide>
+            <div class="details-block">
+                <div class="h1">Lounge Hall</div>
+
+                <div>
+                    <div class="details-grid">
+                        <div class="details-item">
+                            <span class="number-variable">2</span> этажа пространства
+                        </div>
+                        <div class="details-item">
+                            Торговая галерея и рестораны
+                        </div>
+                        <div class="details-item">
+                            Бары с выходом на террасы
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </swiper-slide>
+    </details-slider>
+</div>

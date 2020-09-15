@@ -1,0 +1,41 @@
+[v-cloak] {
+  display: none;
+}
+
+.m-text-uppercase{
+  text-transform: uppercase;
+}
+.m-text-capitalize{
+  text-transform: capitalize;
+}
+.m-text-underline{
+  text-decoration: underline;
+}
+
+.h100{
+  height: 100%;
+}
+
+.m-pointer{
+  cursor: pointer;
+}
+
+.m-preline{
+  white-space: pre-line;
+}
+
+.m-nowrap{
+  white-space: nowrap;
+}
+
+.no-pointer-events{
+  pointer-events: none;
+}
+
+.no-select{
+  user-select: none;
+}
+
+.m-break-all{
+  word-break: break-all;
+}

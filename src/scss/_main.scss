@@ -1,0 +1,71 @@
+body{
+height: 100vh;
+overflow: hidden;
+}
+
+svg{
+  display: inline-block;
+  vertical-align: middle;
+}
+
+[disabled], :disabled{
+  opacity: .7;
+  pointer-events: none;
+}
+
+a{
+  cursor: pointer;
+  &, &:hover, &:active, &:focus{
+    color: inherit;
+  }
+}
+
+.padding-horisontal{
+  padding-left: 30px;
+  padding-right: 30px;
+  @media (min-width: map_get($grid-breakpoints, 'lg')) {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
+
+
+// PAGINATION
+.swiper-button-prev-common{
+  background: url(../static/img/arrow-left.png);
+  width: 11px;
+  height: 19px;
+  z-index: 2;
+  margin-right: 30px;
+}
+.swiper-button-next-common{
+  background: url(../static/img/arrow-right.png);
+  width: 11px;
+  height: 19px;
+  z-index: 2;
+  margin-left: 30px;
+}
+
+.swiper-bottom__pagitation-common{
+  position: absolute;
+  left: 50%;
+  bottom: 100px;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+}
+.swiper-pagination-common{
+  position: relative;
+  display: flex;
+  align-items: center;
+  .swiper-pagination-bullet{
+    border: 1px solid #fff;
+    background: none;
+    width: 11px;
+    height: 11px;
+    margin:0 5px;
+  }
+  .swiper-pagination-bullet-active{
+    background: #fff;
+  }
+}

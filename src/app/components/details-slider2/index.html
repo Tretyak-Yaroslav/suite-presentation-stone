@@ -1,0 +1,23 @@
+<div class="details-slider-component2" v-show="!isOpenModal">
+    <header v-show="!open">
+        <a @click="toggle" class="inside">
+            <span>Подобрать</span>
+        </a>
+    </header>
+
+    <transition>
+        <main v-show="open">
+            <div class="underlay" @click="toggle"></div>
+            <div class="content">
+                <a v-if="!isSelectedLeft" class="btn-close" @click="$router.go(-1)">Назад</a>
+
+                <slot name="content-secondary"></slot>
+
+                <swiper :options="swiperOption" ref="swiper" @slide-change="$emit('slide-change', $event)">
+                    <slot></slot>
+                    <div class="swiper-pagination" slot="pagination"></div>
+                </swiper>
+            </div>
+        </main>
+    </transition>
+</div>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 31.51 31.47">
+    <title>sharing</title>
+    <circle cx="26.47" cy="5.04" r="4.29" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="1.5"/>
+    <circle cx="26.47" cy="26.43" r="4.29" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="1.5"/>
+    <path d="M6300.84,4855.42a4.29,4.29,0,1,1-.73-2.4A4.29,4.29,0,0,1,6300.84,4855.42Z"
+          transform="translate(-6291.51 -4839.56)" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="1.5"/>
+    <line x1="22.63" y1="6.93" x2="8.75" y2="13.71" fill="none" stroke="currentColor" stroke-miterlimit="10"
+          stroke-width="1.5"/>
+    <line x1="22.5" y1="24.82" x2="8.88" y2="17.76" fill="none" stroke="currentColor" stroke-miterlimit="10"
+          stroke-width="1.5"/>
+</svg>

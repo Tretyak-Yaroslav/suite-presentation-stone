@@ -1,0 +1,58 @@
+ <div class="about-page-component" :class="{'nav-arrows-visible': navArrowsVisible}">
+    <!-- <transition> -->
+        <!-- <div class="intro-title" :class="{ 'hidden' : !introTitleShow }">
+            <span>О бизнес-центре</span>
+        </div> -->
+
+        <intro-title title="О бизнес-центре" />
+    <!-- </transition> -->
+    <div class="page-name">
+        О бизнес-центре
+    </div>
+
+    <vr-tour-btn />
+
+    <div class="page-class" style="background-image: url(static/img/class.png)"></div>
+    <div class="page-class-left" style="background-image: url(static/img/logo-left.png)"></div>
+    <img class="stone-logo" src="static/img/stone-logo.svg" alt="">
+    <!-- <video-html5
+            class="page-video"
+            src="static/video/park.mp4"
+            :autoplay="true"
+            :loop="true"
+            :muted="true"
+            fit="cover"
+    ></video-html5> -->
+    <div class="img-wrap">
+        <div class="img" style="background-image: url(static/img/about.jpg)"></div>
+    </div>
+
+    <details-slider>
+        <swiper-slide>
+            <div class="details-block">
+                <div class="h1">Новый бизнес-центр класса А в центре Москвы</div>
+
+                <div>
+                    <div class="details-grid">
+                        <div class="details-item">
+                            <span class="number-variable">16</span> этажей
+                        </div>
+                        <div class="details-item">
+                            Подземный паркинг
+                        </div>
+                        <div class="details-item">
+                            Открытые террасы <span class="number-variable">1 000</span> м<sup><span class="number-variable">2</span></sup>
+                        </div>
+
+                        <div class="details-item">
+                            Натуральные материалы отделки
+                        </div>
+                        <div class="details-item no-border">
+                            Концептуальная инфраструктура
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </swiper-slide>
+    </details-slider>
+</div>

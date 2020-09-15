@@ -1,0 +1,42 @@
+.preloader-component{
+  //font-size: 80px;
+  display: inline-block;
+  vertical-align: middle;
+  //position: relative;
+  //margin: 0 auto;
+  width: 1em;
+  height: 1em;
+  //color: map_get($master-palette, 'primary');
+
+  svg {
+    display: block;
+    animation: rotate 2s linear infinite;
+    height: 100%;
+    width: 100%;
+    transform-origin: center center;
+  }
+
+  circle {
+    stroke-dasharray: 130;
+    stroke-dashoffset: -30;
+    animation: dash 2s linear infinite;
+  }
+
+  @keyframes rotate {
+    100% {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes dash {
+    0% {
+      stroke-dasharray: 130;
+      stroke-dashoffset: -30;
+    }
+    100% {
+      stroke-dasharray: 130;
+      stroke-dashoffset: -290;
+    }
+  }
+
+}

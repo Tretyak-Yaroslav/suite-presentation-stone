@@ -1,0 +1,27 @@
+<div class="details-slider-component">
+    <header v-show="!open">
+        <a @click="toggle">
+            <span class="icon"></span>
+        </a>
+    </header>
+
+    <transition>
+        <main v-show="open" :class="{toggle: open, nottoggle : !open}">
+            <div class="underlay" @click="toggle"></div>
+            <div class="content">
+                <a class="btn-close" @click="toggle">
+                    <svg>
+                        <use xlink:href="#close"></use>
+                    </svg>
+                </a>
+
+                <slot name="content-secondary"></slot>
+
+                <swiper :options="swiperOption" ref="swiper" class="testing"  @slide-change="$emit('slide-change', $event)">
+                    <slot></slot>
+                    <div class="swiper-pagination" slot="pagination"></div>
+                </swiper>
+            </div>
+        </main>
+    </transition>
+</div>

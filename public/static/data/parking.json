@@ -1,0 +1,12 @@
+[
+  {
+    "floor": 1,
+    "placesLength": 100,
+    "selectedPlace": []
+  },
+  {
+    "floor": 2,
+    "placesLength": 100,
+    "selectedPlace": [1,2,4,5,6]
+  }
+]

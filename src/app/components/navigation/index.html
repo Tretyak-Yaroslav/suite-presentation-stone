@@ -1,0 +1,66 @@
+<div class="navigation-component" :class="[navClassName, {'decoration-primary': decorationMode === 2}]">
+    <transition>
+        <div v-show="navOpen" class="nav-content">
+            <div class="underlay"></div>
+
+            <nav @click="navClick">
+                <swiper :options="swiperOptions" ref="swiper"
+                        @slide-change="onSlideChange"
+                        @slide-change-transition-end="onSlideChangeComplete"
+                >
+                    <swiper-slide v-for="(navItem, index) in navigation" :key="index">
+                        <div class="nav-item" :data-route-name="navItem.routeName">
+                            <a class="nav-link" :data-index="index">{{navItem.title}}</a>
+                        </div>
+                    </swiper-slide>
+                </swiper>
+            </nav>
+
+            <a class="btn-out padding-horisontal" @click="out" style="z-index: 10;">Выйти</a>
+
+            <!--<footer class="padding-horisontal">-->
+                <!--<a>Бронирование</a>-->
+            <!--</footer>-->
+        </div>
+    </transition>
+
+    <header class="padding-horisontal">
+        <div class="side-left"></div>
+        <a class="side-center u-text-center" @click="navOpenToggle">
+            <svg class="icon-menu" :class="{'close': navOpen}" version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                     viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve">
+                <line class="line-1" fill="none" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" x1="0" y1="17" x2="40" y2="17"/>
+                <line class="line-2" fill="none" stroke="currentColor" stroke-width="2" stroke-miterlimit="10" x1="0" y1="23" x2="40" y2="23"/>
+            </svg>
+        </a>
+        <!-- <div class="side-right u-text-right">
+            <a class="icon-sharing" v-if="sharingAble" v-show="!navOpen" @click="sharingInit">
+                <svg>
+                    <use xlink:href="#sharing"></use>
+                </svg>
+            </a>
+        </div> -->
+        <div class="side-right" v-if="activeNavTitle != 'Начало'"><span>{{activeNavTitle}}</span></div>
+    </header>
+
+    <a class="padding-horisontal arrow-toggler left" v-show="showGoPrev" @click="goPrev">
+        <svg class="icon-arrow">
+            <use xlink:href="#arrow-long-left"></use>
+        </svg>
+    </a>
+    <a class="padding-horisontal arrow-toggler right" v-show="showGoNext" @click="goNext">
+        <svg class="icon-arrow">
+            <use xlink:href="#arrow-long-right"></use>
+        </svg>
+    </a>
+
+
+    <details-slider class="sharing-details-slider" ref="sharingDetailsBlock" @toggled="sharingVisible = $event">
+        <swiper-slide>
+            <transition name="fade">
+                <form-sharing v-if="sharingVisible" @complete="sharingFormComplete"></form-sharing>
+            </transition>
+        </swiper-slide>
+    </details-slider>
+
+</div>

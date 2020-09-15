@@ -1,0 +1,70 @@
+.panorama-tour-component{
+  overflow: hidden;
+  position: relative;
+  //.preloader-container{
+  //  position: absolute;
+  //  top: 0;
+  //  left: 0;
+  //  bottom: 0;
+  //  right: 0;
+  //  display: flex;
+  //  justify-content: center;
+  //  align-items: center;
+  //  font-size: 2.4rem;
+  //}
+
+  .preloader-container{
+    pointer-events: none;
+    position: fixed;
+    z-index: 9;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    font-size: 1.1rem;
+    .preloader-content-container{
+      width: 100%;
+      max-width: 32rem;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+      padding: 1.2rem 3.5rem;
+      border-radius: 0 0 1.2rem 1.2rem;
+      color: $text-color;
+      background-color: #fff;
+    }
+
+    &.v-enter-active, &.v-leave-active {
+      animation-duration: .3s;
+      .preloader-content-container{
+        transition-property: transform, opacity;
+        transition-timing-function: ease;
+        transition-duration: .3s;
+      }
+    }
+    &.v-leave-active{
+      .preloader-content-container {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    &.v-leave-to{
+      .preloader-content-container {
+        opacity: 0;
+        transform: translateY(-80%);
+      }
+    }
+    &.v-enter-active{
+      .preloader-content-container {
+        opacity: 0;
+        transform: translateY(-80%);
+      }
+    }
+    &.v-enter-to{
+      .preloader-content-container {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  }
+}

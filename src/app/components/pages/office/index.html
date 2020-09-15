@@ -1,0 +1,45 @@
+<div class="office-page-component" :class="{'nav-arrows-visible': navArrowsVisible}">
+    <intro-title title="Офисные помещения класса А" />
+    <div class="page-name">
+        Офисные помещения класса А
+    </div>
+    <div class="page-class" style="background-image: url(static/img/class.png)"></div>
+    <div class="page-class-left" style="background-image: url(static/img/logo-left.png)"></div>
+    <img class="stone-logo" src="static/img/stone-logo.svg" alt="">
+    <div class="img-wrap">
+        <div class="img" style="background-image: url(static/img/office.jpg)"></div>
+    </div>
+    <div class="inside"><router-link to="/office/office-intro">Подобрать</router-link></div>
+    <details-slider>
+        <swiper-slide>
+            <div class="details-block">
+                <div class="h1">Офисные помещения класса А</div>
+
+                <div>
+                    <div class="details-grid">
+                        <div class="details-item">
+                            Площадь офисов от <span class="number-variable">250</span> до <span class="number-variable">10 000</span> м<sup><span class="number-variable">2</span></sup>
+                        </div>
+                        <div class="details-item">
+                            Высота потолков – <span class="number-variable">3,65</span> м
+                        </div>
+                        <div class="details-item">
+                            Функциональные варианты планировок
+                        </div>
+
+                        <div class="details-item">
+                            Отделка Shell & Core
+                        </div>
+                        <div class="details-item">
+                            Новейшие инженерные системы
+                        </div>
+                        <div class="details-item">
+                            Панорамные окна с алюминиевым профилем
+                        </div>
+                        <div class="inside"><router-link to="/office/office-intro">Подобрать</router-link></div>
+                    </div>
+                </div>
+            </div>
+        </swiper-slide>
+    </details-slider>
+</div>

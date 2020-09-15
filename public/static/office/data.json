@@ -1,0 +1,38 @@
+[
+  {
+    "floor": 1,
+    "type": 1,
+    "segment": 1,
+    "sections": [1,null,null,null]
+  },
+  {
+    "floor": 2,
+    "type": 2,
+    "segment": 1,
+    "sections": [1,null,3,null]
+  },
+  {
+    "floor": 3,
+    "type": 3,
+    "segment": 2,
+    "sections": [null,2,null,null]
+  },
+  {
+    "floor": 4,
+    "type": 4,
+    "segment": 2,
+    "sections": [null,2,null,null]
+  },
+  {
+    "floor": 5,
+    "type": 5,
+    "segment": 2,
+    "sections": [null,2,null,null]
+  },
+  {
+    "floor": 6,
+    "type": 6,
+    "segment": 3,
+    "sections": [1,null,null,null]
+  }
+]

@@ -1,0 +1,728 @@
+.office-intro-page-component{
+  min-height: 100%;
+  background-color: #fff;
+  color: #fff;
+
+  .sit-box{
+    position: absolute;
+    top: 100px;
+    right: 10vw;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  .sit-text{
+    color: #000;
+    font-size: 18px;
+    margin-right: 37px;
+    font-family: 'Codec Cold Trial Light';
+  }
+  .sit-checkbox{
+    appearance: none;
+    width: 24px;
+    height: 24px;
+    border: 1px solid #2B2C2C;
+    border-radius: 100%;
+    cursor: pointer;
+    &:checked{
+      background: #2B2C2C;
+    }
+  }
+
+  .page-class-left{
+    z-index: 12;
+  }
+
+  .saved-box{
+    position: absolute;
+    top: 0;
+    right: 100px;
+    z-index: 2;
+    cursor: pointer;
+    &-icon{
+      width: 30px;
+      height: 60px;
+      color: #555555;
+      &.saved{
+        color: #306AD0;
+      }
+    }
+    &-counter{
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Codec Cold Trial Light';
+    }
+  }
+
+  .left-side__back{
+    position: absolute;
+    z-index: 2;
+    position: absolute;
+    top: 20px;
+    left: 30px;
+    color: #000;
+    cursor: pointer;
+    // background-color: #F4F4F4;
+  }
+  .parking-filters{
+    position: absolute;
+    bottom: -200px;
+    // left: 35%;
+    // left: 40%;
+    right: 0;
+    width: calc(100vw - 590px);
+    min-width: 800px;
+    height: 200px;
+    color: #000;
+    font-family: 'Codec Cold Trial Light';
+    transition: .65s ease;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+
+    padding-right: 8vw;
+    padding-left: 5vw;
+    &.active{
+      transform: translateY(-300px);
+    }
+    .filter-left{
+      position: relative;
+      // width: 765px;
+      // height: 200px;
+      width: 100%;
+      // height: 300px;
+      // overflow-y: scroll;
+      // overflow-x: hidden;
+      &__body{
+        height: 210px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+      }
+      &__head{
+        // margin-bottom: 23px;
+        width: 100%;
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        justify-content: left;
+        padding-left: 50px;
+        position: relative;
+        padding-right: 200px;
+        // position: absolute;
+        .filter-left__item-box{
+          font-family: 'Codec Cold Trial Bold';
+        }
+      }
+      &__item{
+        width: 100%;
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        justify-content: left;
+        align-items: center;
+        margin: 23px 0;
+        cursor: pointer;
+        position: relative;
+        padding-left: 50px;
+        padding-right: 200px;
+        &.active{
+          color:#306AD0;
+          font-weight: bold;
+          font-family: 'Codec Cold Trial Bold';
+          .filter-left__item-icon{
+            // color: #306AD0;
+            opacity: 1;
+            visibility: visible;
+          }
+          .filter-left__item-box-more{
+            opacity: 1;
+            visibility: visible;
+          }
+        }
+        &-icon{
+          position: absolute;
+          left: 0;
+          width: 20px;
+          height: 20px;
+          opacity: 0;
+          visibility: hidden;
+          color: #555555;
+          &.saved{
+            color: #306AD0;
+          }
+        }
+        &-box{
+          width: 100%;
+          display: flex;
+          align-items: center;
+          img{
+            width: 24px;
+            margin-left: 10px;
+          }
+          &-more{
+            // max-width: 220px;
+            position: absolute;
+            right: 15px;
+            width: 200px;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0;
+            visibility: hidden;
+            img{
+              width: 65px;
+              margin-left: 46px;
+              margin-right: 10px;
+            }
+          }
+          &-floor{
+            max-width: 80px;
+          }
+          &-work{
+            max-width: 130px;
+          }
+        }
+      }
+    }
+  }
+
+  .filter-left__body::-webkit-scrollbar-track
+  {
+    -webkit-box-shadow: inset 0 0 2px rgba(0,0,0,0.1);
+    background-color: #F5F5F5;
+  }
+  
+  .filter-left__body::-webkit-scrollbar
+  {
+    width: 4px;
+    background-color: #F5F5F5;
+  }
+  
+  .filter-left__body::-webkit-scrollbar-thumb
+  {
+    background-color: #000000;
+    border: 1px solid #555555;
+    width: 8px;
+  }
+
+  .select{
+    display: flex !important;
+    align-items: center;
+    .input-control{
+      display: flex;
+      align-items: center;
+      &::after{
+        right: -10px !important;
+      }
+    }
+  }
+  .down.input-control::after{
+    border-left: calc(4.89px * 1.5) solid transparent !important;
+    border-right: calc(5.65px * 1.5) solid #306AD0 !important;
+    border-top: calc(4.89px * 1.5) solid transparent !important;
+    border-bottom: calc(4.89px * 1.5) solid transparent !important;
+    transition: all .2s ease-out !important;
+    // border-color: transparent #306AD0 transparent transparent !important;
+  }
+
+  .up.input-control::after{
+    border-left: calc(4.89px * 1.5) solid transparent !important;
+    border-right: calc(5.65px * 1.5) solid #306AD0 !important;
+    border-top: calc(4.89px * 1.5) solid transparent !important;
+    border-bottom: calc(4.89px * 1.5) solid transparent !important;
+    transform: translateY(-50%) rotate(-90deg) !important;
+    transition: all .2s ease-out !important;
+    // border-color: transparent #306AD0 transparent transparent !important;
+  }
+
+  .select{
+    height: auto !important;
+    &-input{
+      padding-left: 0 !important;
+    }
+  }
+  
+  .dropMenu{
+    top: 100% !important;
+    padding: 0px !important;
+    max-height: unset !important;
+    li{
+      height: unset !important;
+      line-height: 23px !important;
+      font-size: 17px !important;
+      font-family: 'Codec Cold Trial Light' !important;
+    }
+  }
+
+  .select-cost{
+    font-family: 'Codec Cold Trial Bold';
+    color: #306AD0;
+    margin-top: 0px;
+    font-weight: 600;
+    font-size: 18px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .scheme{
+    // padding-left: 20%;
+  }
+
+  .page-video{
+    height: 100vh;
+  }
+  .img-wrap{
+    height: 100vh;
+    transition-duration: .7s;
+    transition-delay: 1.3s;
+  }
+  .img{
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: cover;
+  }
+  #workspace1{
+    transition: .65s ease;
+    width: calc(100% - 590px);
+    margin-left: auto !important;
+    &.active{
+      transform: scale(0.7);
+     // margin: -8% 0 0 10%;
+    }
+    @media (max-width: 1200px) {
+      transform: scale(0.7);
+       // margin: 21% 0 0 0;
+    }
+  }
+  .left-side{
+    position: relative;
+    display: block;
+    font-family: 'Arial';
+    color: #000;
+    width: 590px;
+    height: 100vh;
+    background: #F4F4F4;
+    padding: 120px 100px 0 175px;
+    font-family: 'Codec Cold Trial ExtraLight';
+    z-index: 8;
+    .font{
+      font-family: 'Codec Cold Trial Light';
+    }
+    .bolt{
+      font-family:'Codec Cold Trial Bold';
+    }
+    .link-back{
+      position: absolute;
+      top: 20px;
+      left: 30px;
+    }
+    &__text{
+      font-size: 18px;
+      display: block;
+      margin-bottom: 10px;
+    }
+    &__title{
+      font-size: 60px;
+      font-family:'Codec Cold Trial ExtraBold';
+    }
+    &__floor{
+      display: block;
+      margin: 70px 0;
+      cursor: pointer;
+      transition: all .4s ease-out;
+      &.active{
+        transform: translateX(-55px);
+        font-family:'Codec Cold Trial Bold';
+        .sub-title{
+          color: #306AD0;
+          font-weight: 600;
+          &::before{
+            color: #F4F4F4;
+            // text-shadow: 0 0 5px #306AD0;
+            text-shadow: -1px 1px 0 #306AD0, 
+                          1px 1px 0 #306AD0, 
+                        1px -1px 0 #306AD0,
+                        -1px -1px 0 #306AD0; ;
+          }
+        }
+        .left-side__floors{
+          color: #306AD0;
+          font-weight: 600;
+          .font{
+            font-family:'Codec Cold Trial Bold';
+          }
+        }
+      }
+      .sub-title{
+        position: relative;
+        font-size: 22px;
+        padding-left: 50px;
+        margin-bottom: 10px;
+        &::before{
+          content: '01';
+          position: absolute;
+          font-family: 'Codec Cold Trial Regular';
+          left: 0;
+          font-weight: 400;
+          top: 50%;
+        }
+      }
+      .left-side__floors{
+        position: relative;
+        padding-left: 50px;
+        .font{
+          font-family:'Codec Cold Trial Light';
+        }
+      }
+      .floor{
+        font-size: 22px;
+        margin-right: 30px;
+        cursor: pointer;
+        font-family: 'Codec Cold Trial Bold';
+        &.active{
+          font-weight: 700;
+          color: #306AD0;
+        }
+      }
+    }
+    .floor-second{
+      .sub-title{
+        &::before{
+          content: '02';
+          font-family: 'Codec Cold Trial Regular';
+          font-weight: 400;
+        }
+      }
+    }
+    .floor-third{
+      .sub-title{
+        &::before{
+          content: '03';
+          font-family: 'Codec Cold Trial Regular';
+          font-weight: 400;
+        }
+      }
+    }
+    &__cost{
+      display: block;
+      margin-bottom: 20px;
+      .sub-title{
+        position: relative;
+        font-size: 22px;
+        padding-left: 50px;
+        &::before{
+          content: '04';
+          position: absolute;
+          font-family: 'Arial';
+          font-weight: 700;
+          left: 0;
+          top: 0;
+        }
+      }
+    }
+    &__rent{
+      display: block;
+      margin-bottom: 0;
+      .dropMenu{
+        min-width: 130px !important;
+        margin: 0 !important;
+      }
+      .sub-title{
+        position: relative;
+        font-size: 22px;
+        padding-left: 50px;
+      }
+      input{
+        background-color: inherit;
+        border: none;
+        font-size: 18px;
+        color: #000;
+        cursor: pointer;
+        font-family: 'Codec Cold Trial Bold';
+      }
+      .select{
+        width: 120px;
+      }
+    }
+    &__money{
+      display: block;
+      margin-bottom: 0;
+      .sub-title{
+        position: relative;
+        font-size: 22px;
+        padding-left: 50px;
+      }
+      input{
+        background-color: inherit;
+        border: none;
+        font-size: 18px;
+        color: #000;
+        cursor: pointer;
+      }
+      .select{
+        width: 110px;
+      }
+    }
+  }
+  & ~ .navigation-component{
+    .arrow-toggler{
+      transition: all .7s ease;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+  }
+  &.nav-arrows-visible{
+    & ~ .navigation-component{
+      .arrow-toggler{
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  }
+ /*  .canvas-container{
+    width: 1250px!important;
+    margin: 100px auto 0;
+    height: 770px!important;
+  }
+  #canvas{
+    width: 1250px!important;
+    height: 750px!important;
+  }
+  .upper-canvas {
+    width: 1250px!important;
+    height: 750px!important;
+  } */
+  .range-slider {
+    width: 300px;
+    margin: auto;
+    text-align: center;
+    position: relative;
+    height: 85px;
+    padding-bottom: 40px;
+  }
+  .range-slider-info{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    font-size: 22px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .range-slider svg,
+  .range-slider input[type=range] {
+    position: absolute;
+    left: 0;
+    top: 20px;
+  }
+  
+  input[type=number] {
+    border: none;
+    text-align: center;
+    font-size: 22px;
+    -moz-appearance: textfield;
+    background: transparent;
+  }
+  .range-slider-info__left{
+    width: 49%;
+    display: inline-block;
+    text-align: left;
+  }
+  .range-slider-info__right{
+    width: 49%;
+    display: inline-block;
+    text-align: right;
+  }
+  input[type=number]::-webkit-outer-spin-button,
+  input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+  
+  input[type=number]:invalid,
+  input[type=number]:out-of-range {
+    border: 2px solid #ff6347;
+  }
+  
+  input[type=range] {
+    -webkit-appearance: none;
+    width: 100%;
+  }
+  
+  input[type=range]:focus {
+    outline: none;
+  }
+  
+  input[type=range]:focus::-webkit-slider-runnable-track {
+    background: #2497e3;
+  }
+  
+  input[type=range]:focus::-ms-fill-lower {
+    background: #2497e3;
+  }
+  
+  input[type=range]:focus::-ms-fill-upper {
+    background: #2497e3;
+  }
+  
+  input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 1px;
+    cursor: pointer;
+    animation: 0.2s;
+    background: #306AD0;
+    border-radius: 1px;
+    box-shadow: none;
+    border: 0;
+  }
+  
+  input[type=range]::-webkit-slider-thumb {
+    z-index: 2;
+    position: relative;
+    box-shadow: 0px 0px 0px #000;
+    border: 1px solid #306AD0;
+    height: 18px;
+    width: 18px;
+    border-radius: 25px;
+    background: #306AD0;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -9px;
+  }
+
+  .office_list{
+    position: absolute;
+    left: 700px;
+    // left: 35%;
+    color: #000000;
+    bottom: 0;
+    &__item{
+      display: flex;
+      margin-bottom: 60px;
+    }
+    &__circle{
+      display: block;
+      width: 7px;
+      height: 7px;
+      background: #000000;
+      border-radius: 100%;
+      margin-right: 15px;
+      margin-top: 8px;
+    }
+    &__info{
+      display: flex;
+      flex-direction: column;
+      &-title{
+        margin: 0;
+        font-size: 22px;
+        font-family: 'Codec Cold Trial Bold';
+      }
+      &-text{
+        margin: 0;
+        font-size: 20px;
+        font-family: 'Codec Cold Trial Light';
+      }
+    }
+  }
+
+  #floorWorkspace{
+    width: 300px;
+    height: 350px;
+    pointer-events: none;
+    .canvas-container{
+      width: 100% !important;
+      height: 100% !important;
+      margin-top: 20px !important;
+    }
+    .upper-canvas {
+      width: 100% !important;
+      height: 100% !important;
+    }
+  }
+
+  .office_trigger{
+    display: flex;
+    align-items: center;
+    margin: 60px 0;
+    padding-left: 30px;
+    cursor: pointer;
+    &__icon{
+      width: 24px;
+      margin-right: 25px;
+    }
+    &__text{
+      font-family: "Codec Cold Trial Regular";
+      font-size: 18px;
+      margin: 0;
+    }
+  }
+
+  .scheme{
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+  }
+
+  .office_modal{
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+    opacity: 0;
+    visibility: hidden;
+    transition: all .4s ease-out;
+    &.active{
+      opacity: 1;
+      visibility: visible;
+    }
+    &__list{
+      position: absolute;
+      right: 23px;
+      bottom: 70px;
+      &-item{
+        font-family: "Codec Cold Trial Regular";
+        font-size: 18px;
+        opacity: .7;
+        // transition: all .4s ease-out;
+        cursor: pointer;
+        &.active{
+          opacity: 1;
+          border-bottom: 1px solid #fff;
+        }
+      }
+    }
+    &__image{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    &__overlay{
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background: #000;
+      opacity: .2;
+    }
+    &__close{
+      position: absolute;
+      top: 25px;
+      right: 25px;
+      cursor: pointer;
+      svg{
+        width: 25px;
+        height: 25px;
+      }
+    }
+  }
+}

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36.41 36.34">
+    <title>sun</title>
+    <polygon
+            points="7.67 7.44 9.59 2.72 14.49 3.67 18.55 0.5 22.27 3.87 27.21 2.98 28.85 7.82 33.58 9.64 32.57 14.59 35.91 18.36 32.11 22.04 32.99 27.25 28.42 28.68 26.71 33.46 21.81 32.51 17.91 35.84 14.03 32.2 8.93 33.25 7.29 28.41 2.83 26.87 4 22.01 0.5 18.23 4.03 14.24 3.05 8.98 7.67 7.44"
+            fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M1946.63-276.56h0.15a11.53,11.53,0,0,1,11.32,11.73h0a11.53,11.53,0,0,1-11.73,11.32h-0.15a11.53,11.53,0,0,1-11.32-11.73h0A11.53,11.53,0,0,1,1946.63-276.56Z"
+          transform="translate(-1928.27 283.08)" fill="none" stroke="currentColor" stroke-linecap="round"
+          stroke-linejoin="round"/>
+</svg>

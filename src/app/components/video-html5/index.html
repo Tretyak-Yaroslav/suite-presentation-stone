@@ -1,0 +1,9 @@
+<div class="video-html5-component" :class="{'fit-cover': fit === 'cover'}">
+    <video ref="videoElem" :poster="poster" :loop="loop"
+           :autoplay="autoplay"
+           :playsinline="true" :muted="muted"
+           preload
+    >
+        <source type="video/mp4" :src="src">
+    </video>
+</div>

@@ -1,0 +1,229 @@
+<div class="ritail-intro-page-component" :class="{'nav-arrows-visible': navArrowsVisible}">
+    <div class="page-name" :class="{ 'opened-ritail' : openedRitail }">
+        Ритейл зона | План
+    </div>
+
+    <div class="stone-logo">
+        <img src="static/img/logo-black.png" alt="" class="stone-logo-icon">
+    </div>
+
+    <saved-box />
+
+    <div class="page-class" style="background-image: url(static/img/class_black.png)"></div>
+    <div class="page-class-left" style="background-image: url(static/img/logo-left_black.png)"></div>
+
+    <div class="ritail-sector-container">
+        <span>Торговая галерея</span>
+        <ul class="t-and-m-sectors">
+            <li class="t-and-m-sectors__item">Занято</li>
+            <li class="t-and-m-sectors__item">Свободно</li>
+            <li class="t-and-m-sectors__item">Выбрано</li>
+        </ul>
+
+        <span>Ритейл</span>
+        <ul class="ritail-sectors">
+            <li class="ritail-sectors__item">Занято</li>
+            <li class="ritail-sectors__item">Свободно</li>
+            <li class="ritail-sectors__item">Выбрано</li>
+        </ul>
+    </div>
+
+    <details-slider2 v-if="!openedRitail" :isOpen="open" @toggle="!open" @toggled='changeWidth'>
+        <swiper-slide>
+            <div class="left-side retail-slider">
+                <div class="left-side__inner">
+                    <span class="left-side__text"><b>Подбор</b> | Информация</span>
+                    <h2 class="left-side__title">Ритейл</h2>
+                    <div class="left-side__area">
+                        <h3 class="sub-title left-side__area">Площадь</h3>
+                        <div class="range-slider">
+                            <input @change="areaSlider" v-model.number="areaMinVal" :min="minArea" :max="maxArea" step="0.10"
+                                   type="range"/>
+                            <input @change="areaSlider" v-model.number="areaMaxVal" :min="minArea" :max="maxArea" step="0.10"
+                                   type="range"/>
+                            <span class="range-slider-info" @change="areaSlider">
+                                <div class="range-slider-info__left">
+                                    <input v-model.number="areaMinVal" type="number" :min="minArea" :max="maxArea"/>м²
+                                </div>
+                                <div class="range-slider-info__right">
+                                    <input v-model.number="areaMaxVal" type="number" :min="minArea" :max="maxArea"/>м²
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="left-side__cost">
+                        <h3 class="sub-title">Стоимость</h3>
+                        <div class="range-slider">
+                            <input @change="priceSlider" v-model.number="priceMinVal" :min="minPrice" :max="maxPrice" step="500"
+                                   type="range"/>
+                            <input @change="priceSlider" v-model.number="priceMaxVal" :min="minPrice" :max="maxPrice" step="500"
+                                   type="range"/>
+                            <span class="range-slider-info" @change="priceSlider">
+                                <div class="range-slider-info__left">
+                                    <input v-model.number="priceMinVal" type="number" :min="minPrice" :max="maxPrice"/> ₽
+                                </div>
+                                <div class="range-slider-info__right">
+                                    <input v-model.number="priceMaxVal" type="number" :min="minPrice" :max="maxPrice"/> ₽
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="left-side__floor">
+                        <h3 class="sub-title">Этаж</h3>
+                        <div class="left-side__floors">
+                            <span class="floor" v-on:click="changeFloor(1)" :class="{active:activeFloor === 1}">1</span>
+                            <span class="floor" v-on:click="changeFloor(2)" :class="{active:activeFloor === 2}">2</span>
+                        </div>
+                    </div>
+                    <div class="left-side__rent">
+                        <v-select v-model="selected" :option="options" :placement="placement"></v-select>
+                    </div>
+                </div>
+            </div>
+        </swiper-slide>
+    </details-slider2>
+
+    <div v-if="openedRitail" class="ritail-details">
+        <div class="ritail-details__back">
+            <img @click="unSelectRitail" src="static/img/ritail-arrow-back.svg" alt="" class="ritail-details__arrow">
+        </div>
+        <div class="ritail-details__list">
+            <h2 class="ritail-details__list__title">Лот {{selectedObject.name}}</h2>
+            <div class="office_list__item">
+                <span class="office_list__circle"></span> 
+                <div class="office_list__info">
+                    <p class="office_list__info-title">Этаж</p> 
+                    <p class="office_list__info-text">{{selectedObject.floor}}</p>
+                </div>
+            </div> 
+            <div class="office_list__item">
+                <span class="office_list__circle"></span> 
+                <div class="office_list__info">
+                    <p class="office_list__info-title">Площадь</p> 
+                    <p class="office_list__info-text">{{selectedObject.area}} м²</p>
+                </div>
+            </div> 
+            <div class="office_list__item">
+                <span class="office_list__circle"></span> 
+                <div class="office_list__info">
+                    <p class="office_list__info-title">Терраса</p> 
+                    <p class="office_list__info-text">
+                        Да
+                    </p>
+                </div>
+            </div>
+            <div class="office_list__item">
+                <span class="office_list__circle"></span> 
+                <div class="office_list__info">
+                    <p class="office_list__info-title">Потолки</p> 
+                    <p class="office_list__info-text">
+                        2 м²
+                    </p>
+                </div>
+            </div>
+            <div class="left-side__rent">
+                <v-select v-model="selected" :option="options" :placement="placement"></v-select>
+                <p class="select-cost">
+                    <span v-if="selected.value == 1">
+                        {{selectedObject.rentMetr | money}} ₽
+                    </span>
+                    <span v-if="selected.value == 2">
+                        {{selectedObject.rent_price | money}} ₽
+                    </span>
+                    <span v-if="selected.value == 3">
+                        {{selectedObject.priceMetr | money}} ₽
+                    </span>
+                    <span v-if="selected.value == 4">
+                        {{selectedObject.price | money}} ₽
+                    </span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div id="workspace" v-bind:class="{ active: open, 'ritails-opened': openedRitail }">
+            <canvas id="canvas"></canvas>
+        </div>
+        <div v-if="!openedRitail" class="ritail-filters" v-bind:class="{ active: open }">
+            <div class="filter-left">
+                <div class="filter-left__head">
+                    <div class="filter-left__item-box filter-left__item-box-floor">Этаж</div>
+                    <div class="filter-left__item-box filter-left__item-box-work">Площадь</div>
+                    <div class="filter-left__item-box filter-left__item-box-work">Раб.мест</div>
+                    <div class="filter-left__item-box">
+                        <span v-if="selected.value == 2">
+                            Аренда за м²/мес
+                        </span>
+                        <span v-if="selected.value == 4">
+                            Продажа за м²/мес
+                        </span>
+                    </div>
+                    <div class="filter-left__item-box">
+                        <span v-if="selected.value == 2">
+                            Аренда за лот
+                        </span>
+                        <span v-if="selected.value == 4">
+                            Продажа за лот
+                        </span>
+                    </div>
+                    <div class="filter-left__item-box filter-left__item-box-more"></div>
+                </div>
+                <div class="filter-left__body">
+                    <div 
+                        v-for="(item, i) in filterByPrice" 
+                        class="filter-left__item" 
+                        :class="{ 'active' : activeItemsArr.includes(item.id) }" 
+                        :key="item.id" 
+                        @click="changeScheme($event, item)"
+                        v-if="item.status == 'available'"
+                    > 
+                        <!-- <svg 
+                            @click="handleSaveSection(item)" 
+                            :class="{'saved': savedArray.includes(item.id)}" 
+                            class="filter-left__item-icon"
+                        >
+                            <use xlink:href="#bookmark"></use>
+                        </svg> -->
+                        <img 
+                            v-if="!savedArray.includes(item.id)" 
+                            src="static/img/saved-bookmark-trans.svg" 
+                            class="filter-left__item-icon"
+                            @click="handleSaveSection(item)" 
+                        >
+                        <img 
+                            v-else 
+                            src="static/img/saved-bookmark.svg" 
+                            class="filter-left__item-icon"
+                            @click="handleSaveSection(item)" 
+                        >
+                        <div class="filter-left__item-box filter-left__item-box-floor">{{item.floor}}</div>
+                        <div class="filter-left__item-box filter-left__item-box-work">{{item.area}}</div>
+                        <div class="filter-left__item-box filter-left__item-box-work">{{item.id}}</div>
+                        <div class="filter-left__item-box">
+                            <span v-if="selected.value == 2">
+                                {{item.rentMetr | money}} ₽
+                            </span>
+                            <span v-if="selected.value == 4">
+                                {{item.priceMetr | money}} ₽
+                            </span>
+                        </div>
+                        <div class="filter-left__item-box">
+                            <span v-if="selected.value == 2">
+                                {{item.rent_price | money}} ₽
+                            </span>
+                            <span v-if="selected.value == 4">
+                                {{item.price | money}} ₽
+                            </span>
+                        </div>
+                        <div @click="selectRitail(item)" class="filter-left__item-box filter-left__item-box-more">
+                            <span class="filter-left__item-box-more-item">Перейти</span>
+                            <img class="filter-left__item-box-more-item" src="static/img/more-office.svg" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

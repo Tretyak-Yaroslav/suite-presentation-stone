@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta charset="utf-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+		<script src="https://rawgit.com/jonathantneal/svg4everybody/master/dist/svg4everybody.js"></script>
+		<script>svg4everybody();</script>
+		<title>SVG &lt;symbol&gt; sprite preview | svg-sprite</title>
+		<style>@charset "UTF-8";body{padding:0;margin:0;color:#666;background:#fafafa;font-family:Arial,Helvetica,sans-serif;font-size:1em;line-height:1.4}header{display:block;padding:3em 3em 2em 3em;background-color:#fff}header p{margin:2em 0 0 0}section{border-top:1px solid #eee;padding:2em 3em 0 3em}section ul{margin:0;padding:0}section li{display:inline;display:inline-block;background-color:#fff;position:relative;margin:0 2em 2em 0;vertical-align:top;border:1px solid #ccc;padding:1em 1em 3em 1em;cursor:default}.icon-box{margin:0;width:144px;height:144px;position:relative;background:#ccc url("data:image/gif;base64,R0lGODlhDAAMAIAAAMzMzP///yH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS4wLWMwNjEgNjQuMTQwOTQ5LCAyMDEwLzEyLzA3LTEwOjU3OjAxICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1LjEgV2luZG93cyIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozQjk4OTI0MUY5NTIxMUUyQkJDMEI5NEFEM0Y1QTYwQyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozQjk4OTI0MkY5NTIxMUUyQkJDMEI5NEFEM0Y1QTYwQyI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjNCOTg5MjNGRjk1MjExRTJCQkMwQjk0QUQzRjVBNjBDIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjNCOTg5MjQwRjk1MjExRTJCQkMwQjk0QUQzRjVBNjBDIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+Af/+/fz7+vn49/b19PPy8fDv7u3s6+rp6Ofm5eTj4uHg397d3Nva2djX1tXU09LR0M/OzczLysnIx8bFxMPCwcC/vr28u7q5uLe2tbSzsrGwr66trKuqqainpqWko6KhoJ+enZybmpmYl5aVlJOSkZCPjo2Mi4qJiIeGhYSDgoGAf359fHt6eXh3dnV0c3JxcG9ubWxramloZ2ZlZGNiYWBfXl1cW1pZWFdWVVRTUlFQT05NTEtKSUhHRkVEQ0JBQD8+PTw7Ojk4NzY1NDMyMTAvLi0sKyopKCcmJSQjIiEgHx4dHBsaGRgXFhUUExIREA8ODQwLCgkIBwYFBAMCAQAAIfkEAAAAAAAsAAAAAAwADAAAAhaEH6mHmmzcgzJAUG/NVGrfOZ8YLlABADs=") top left repeat;border:1px solid #ccc;display:table-cell;vertical-align:middle;text-align:center}.icon{display:inline;display:inline-block}h1{margin-top:0}h2{margin:0;padding:0;font-size:1em;font-weight:normal;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;position:absolute;left:1em;right:1em;bottom:1em}footer{display:block;margin:0;padding:0 3em 3em 3em}footer p{margin:0;font-size:.7em}footer a{color:#0f7595;margin-left:0}</style>
+		
+<!--
+	
+Sprite shape dimensions
+====================================================================================================
+You will need to set the sprite shape dimensions via CSS when you use them as inline SVG, otherwise
+they would become a huge 100% in size. You may use the following dimension classes for doing so.
+They might well be outsourced to an external stylesheet of course.
+
+-->
+
+<style type="text/css">
+	.svg-0_person-dims { width: 19.21px; height: 28.007px; }
+	.svg-arrow-long-left-dims { width: 32px; height: 1.6px; }
+	.svg-arrow-long-right-dims { width: 32px; height: 1.6px; }
+	.svg-bars-sqr-dims { width: 11.32px; height: 11.32px; }
+	.svg-bookmark-dims { width: 15.04px; height: 32px; }
+	.svg-bookmark-hollow-dims { width: 15.04px; height: 32px; }
+	.svg-close-dims { width: 29.95px; height: 29.91px; }
+	.svg-info-round-dims { width: 24.17px; height: 24.17px; }
+	.svg-logo-dims { width: 32px; height: 9.86px; }
+	.svg-moon-dims { width: 32px; height: 31.18px; }
+	.svg-pano-controls-dims { width: 32px; height: 32px; }
+	.svg-sharing-dims { width: 31.51px; height: 31.47px; }
+	.svg-stone-logo-dims { width: 32px; height: 23.96px; }
+	.svg-sun-dims { width: 32px; height: 31.94px; }
+	.svg-volume-loud-dims { width: 32px; height: 29.88px; }
+	.svg-volume-muted-dims { width: 29.81px; height: 32px; }
+</style>
+<!--
+====================================================================================================
+-->
+
+	</head>
+	<body>
+	
+<!--
+	
+Inline <symbol> SVG sprite
+====================================================================================================
+This is an inlined version of the generated SVG sprite. The single images may be <use>d everywhere
+below within this document. Please see
+
+	https://github.com/jkphl/svg-sprite/blob/master/docs/configuration.md#defs--symbol-mode
+
+for further details on how to create this embeddable sprite variant.
+
+-->
+
+<svg width="0" height="0" style="position:absolute">
+		<symbol viewBox="0 0 19.21 28.007" id="0_person" xmlns="http://www.w3.org/2000/svg"><g fill="#2B2C2C"><path d="M10.52 10.718l-1.129 3.32 3.121 5.113v7.903h-2.058l-.133-6.176-2.922-3.52-3.321 9.696H1.555L6.536 8.593l-2.524.929.066 4.317H1.887l.066-6.508 7.571-1.86 3.652 5.047 4.383.133v2.125l-5.644-.066z"/><circle cx="11.682" cy="3.204" r="2.448"/></g></symbol>
+		<symbol viewBox="0 0 160.06 8.02" id="arrow-long-left" xmlns="http://www.w3.org/2000/svg"><path fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="2" d="M160.06 3.96H4.82"/><path fill="currentColor" d="M8.98 0v8.02L0 4.01 8.98 0z"/></symbol>
+		<symbol viewBox="0 0 160.06 8.02" id="arrow-long-right" xmlns="http://www.w3.org/2000/svg"><path fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="2" d="M0 3.96h155.24"/><path fill="currentColor" d="M151.08 0v8.02l8.98-4.01L151.08 0z"/></symbol>
+		<symbol viewBox="0 0 11.32 11.32" id="bars-sqr" xmlns="http://www.w3.org/2000/svg"><circle cx="2.12" cy="2.12" r="2.12" fill="currentColor"/><circle cx="9.21" cy="2.12" r="2.12" fill="currentColor"/><circle cx="2.12" cy="9.21" r="2.12" fill="currentColor"/><circle cx="9.21" cy="9.21" r="2.12" fill="currentColor"/></symbol>
+		<symbol viewBox="0 0 18.1 38.5" id="bookmark" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" stroke="currentColor" stroke-miterlimit="10" d="M.5 0v37.3L8.9 29l8.7 8.3V0"/></symbol>
+		<symbol viewBox="0 0 18.1 38.5" id="bookmark-hollow" xmlns="http://www.w3.org/2000/svg"><path fill="none" stroke="currentColor" stroke-miterlimit="10" d="M.5 0v37.3L8.9 29l8.7 8.3V0"/></symbol>
+		<symbol viewBox="0 0 29.95 29.91" id="close" xmlns="http://www.w3.org/2000/svg"><path fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="1.5" d="M.53.53l28.89 28.85M29.42.53L.53 29.38"/></symbol>
+		<symbol viewBox="0 0 24.17 24.17" id="info-round" xmlns="http://www.w3.org/2000/svg"><circle cx="12.08" cy="12.08" r="11.08" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12.08 10.72v6.73"/><circle cx="12.08" cy="6.57" r="1.35"/></symbol>
+		<symbol viewBox="0 0 439.81 135.47" id="logo" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M128.34 124.57v10.72h-1.45v-12.17h2.42l3.95 9.23 3.87-9.23h2.43v12.17h-1.53v-10.72l-4.13 9.6h-1.43l-4.13-9.6zM157.61 129.21c0-3-1.54-4.86-4.28-4.86s-4.31 1.91-4.31 4.86 1.56 4.87 4.31 4.87 4.28-1.93 4.28-4.87m-10.13 0c0-3.85 2.3-6.26 5.85-6.26s5.83 2.42 5.83 6.26-2.28 6.26-5.83 6.26-5.85-2.32-5.85-6.26M167.96 131.82c.37 1.61 1.63 2.29 3.46 2.29s3.11-.77 3.11-2-.67-1.75-2.07-2l-2.14-.36c-2.29-.39-3.4-1.36-3.4-3.32 0-2.18 1.87-3.49 4.5-3.49s4.15 1.27 4.5 3.29l-1.44.23c-.29-1.23-1.18-2.17-3.1-2.17s-3 .91-3 2.1.64 1.68 2.35 2l2.07.36c2.09.36 3.21 1.33 3.21 3.29 0 2.29-2 3.43-4.66 3.43s-4.41-1-4.86-3.4zM192.8 131.28l1.45.23c-.46 2.58-2.3 4-5.16 4-3.51 0-5.7-2.36-5.7-6.25s2.28-6.28 5.7-6.28c2.88 0 4.72 1.38 5.13 4l-1.45.23a3.37 3.37 0 0 0-3.68-2.79c-2.74 0-4.18 2-4.18 4.88s1.49 4.85 4.18 4.85c2.25 0 3.35-1.09 3.72-2.79M211.46 129.21c0-3-1.53-4.86-4.28-4.86s-4.3 1.91-4.3 4.86 1.55 4.87 4.3 4.87 4.28-1.93 4.28-4.87m-10.13 0c0-3.85 2.3-6.26 5.85-6.26s5.83 2.42 5.83 6.26-2.28 6.26-5.83 6.26-5.85-2.32-5.85-6.26M232.22 133.32l3.11-10.2h1.61l-3.95 12.17h-1.65l-3.52-10.68-3.5 10.68h-1.65l-4.05-12.17h1.61l3.3 10.2 3.27-10.2h2.07l3.35 10.2zM251.42 123.12h1.64l4.13 10.33 3.99-10.33h1.61l-4.82 12.17h-1.61l-4.94-12.17zM269.88 123.13h1.54v12.17h-1.54zM288.42 135.29h-8.5v-12.17h1.54v10.74h6.96v1.43zM303.2 135.29h-8.5v-12.17h1.54v10.74h6.96v1.43zM316.22 130.43l-2.23-5.93-2.21 5.93h4.44zm3.5 4.83h-1.67l-1.31-3.43h-5.48l-1.27 3.43h-1.65l4.7-12.17h1.94zM326.46 131.82c.38 1.61 1.63 2.29 3.46 2.29s3.11-.77 3.11-2-.67-1.75-2.07-2l-2.14-.36c-2.29-.39-3.4-1.36-3.4-3.32 0-2.18 1.87-3.49 4.5-3.49s4.15 1.27 4.5 3.29l-1.44.23c-.29-1.23-1.18-2.17-3.1-2.17s-3 .91-3 2.1.64 1.68 2.35 2l2.07.36c2.09.36 3.21 1.33 3.21 3.29 0 2.29-2 3.43-4.67 3.43s-4.41-1-4.85-3.4zM349.31 9.24L343.2 0l-27.68 23.72.85 1.22 32.94-15.7zM56.84 90.89c-25.37 0-42.57-16.18-42.57-43.2 0-26.29 15.61-42.35 39.15-42.35 14.15 0 27.2 5.36 31.47 19.71l1 3.28h.85V6.43a90.38 90.38 0 0 0-31-6.08C24.63.35 0 18.11 0 53.04c0 30.79 22.93 47.09 50 47.09 21.1 0 32.93-8.64 39.88-20.08l-.85-.72c-7.44 6.44-17.81 11.55-32.21 11.55M279.91 87.24V47.57c0-11.8-5.61-18.74-18.3-18.74-11.83 0-22 7.9-24.52 18-.27-11.64-6.24-18-18.28-18-9.76 0-21.09 5.9-24.63 18.45v-18h-1.22l-21.83 4.87v1.09l2.81.24c5.72.49 8.17 3.29 8.17 9.74v42c0 6.08-2.32 9.37-8.17 10.22l-1.59.24v1.09h31.71v-1.09l-1.58-.24c-5.86-.86-8.17-4.14-8.17-10.22V60.57c0-17 11-24.34 19-24.34s11.59 4.5 11.59 13.63v37.35c0 6.08-2.32 9.37-8.17 10.22l-1.59.24v1.09h31.72v-1.09l-1.59-.24c-5.85-.86-8.17-4.14-8.17-10.22V60.56c0-17.4 11.34-24.34 19.64-24.34s11 4.74 11 13.75V87.2c0 6.08-2.32 9.37-8.17 10.22l-1.59.24v1.09h31.71v-1.09l-1.59-.24c-5.86-.86-8.17-4.14-8.17-10.22M406.46 95.51c-14.39 0-24.39-12.9-24.39-32.24 0-17.77 9.15-29.82 22.08-29.82 13.54 0 22.81 12.9 22.81 32.25 0 17.76-8.41 29.81-20.5 29.81m-1.58-66.56c-17.68 0-35.61 12.9-35.61 36.5 0 22.75 16.83 34.68 35.61 34.68 17.68 0 34.88-13 34.88-36.62 0-22.75-15.85-34.56-34.88-34.56M143.19 61.43c0 21.79-8.17 31.76-18.9 31.76-7.19 0-12.2-3.89-12.2-11.43 0-9.13 7.2-14.24 24.27-19l6.83-1.91v.58zm12 26.16V51.94c0-15.09-6.7-23.12-22.81-23.12-13.41 0-24.52 8.28-27.93 18.61l1 .37c4.88-6.69 13.42-12.65 22.19-12.65 10.74 0 15.61 6.21 15.61 19.23v1.48L131.42 59c-18.9 5-31.46 12-31.46 25.19 0 9.73 5.85 15.94 18.17 15.94 13.52 0 21.62-8.7 24.39-18.12v16.78h22.44V97.7l-1.59-.24c-5.85-.85-8.17-3.28-8.17-9.85M344.55 57.68h-34.84c.61-13.88 8.72-24.22 20.2-24.22 12.19 0 15 11 15 19a27.81 27.81 0 0 1-.37 5.24M331 28.86c-17.32 0-33.79 11.8-33.79 36.75 0 21.42 12.81 34.56 32.81 34.56 14.51 0 22.44-7.91 26.1-13.87l-.86-.61c-5.12 5.11-11.23 8.28-19.52 8.28-15.09 0-25.88-11.45-26.09-31.15h47.19a51.84 51.84 0 0 0 .49-7.55c0-13.39-7.69-26.4-26.35-26.4"/></symbol>
+		<symbol viewBox="0 0 37.29 36.34" id="moon" xmlns="http://www.w3.org/2000/svg"><path d="M34 26.92a17.81 17.81 0 0 1-15.76 8.91h-.23A17.82 17.82 0 0 1 .52 17.69h0A17.83 17.83 0 0 1 15.06.49s-6.93 11.75-.1 20.91S34 26.92 34 26.92z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M33.37 16.69l-4.81-2.78-5.02 2.39 1.16-5.44-3.82-4.03 5.53-.58 2.66-4.88 2.25 5.08 5.47 1.02-4.14 3.71.72 5.51z"/></symbol>
+		<symbol viewBox="0 0 65.63 65.63" id="pano-controls" xmlns="http://www.w3.org/2000/svg"><circle cx="32.82" cy="32.82" r="32.82" fill="currentColor" opacity=".2"/><path fill="none" stroke="currentColor" stroke-miterlimit="10" d="M16.35 39.7L9.8 32.68l6.55-6.75M49.29 25.93l6.55 7.02-6.55 6.75M39.7 49.29l-7.02 6.55-6.75-6.55M25.93 16.35l7.02-6.55 6.75 6.55"/></symbol>
+		<symbol viewBox="0 0 31.51 31.47" id="sharing" xmlns="http://www.w3.org/2000/svg"><circle cx="26.47" cy="5.04" r="4.29" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="1.5"/><circle cx="26.47" cy="26.43" r="4.29" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="1.5"/><path d="M9.33 15.86a4.29 4.29 0 1 1-.73-2.4 4.29 4.29 0 0 1 .73 2.4zM22.63 6.93L8.75 13.71M22.5 24.82L8.88 17.76" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="1.5"/></symbol>
+		<symbol viewBox="0 0 33.269 24.907" id="stone-logo" xmlns="http://www.w3.org/2000/svg"><path data-name="Path 51964" d="M33.269 10.777V7.436a2.469 2.469 0 0 0-1.566-2.313L21.064.853a11.929 11.929 0 0 0-8.86 0L1.566 5.123A2.468 2.468 0 0 0 0 7.436v2.6a2.468 2.468 0 0 0 1.566 2.313l10.638 4.27a11.929 11.929 0 0 0 8.86 0l4.91-1.958-2.561-1.031-3.06 1.245a9.517 9.517 0 0 1-3.7.712 9.689 9.689 0 0 1-3.736-.712l-10.639-4.27a.611.611 0 0 1-.391-.569v-2.6a.577.577 0 0 1 .391-.569l10.639-4.269a10.39 10.39 0 0 1 3.736-.712 10.206 10.206 0 0 1 3.7.712l10.638 4.269a.576.576 0 0 1 .392.569v2.633z" fill="#fff"/><path data-name="Path 51965" d="M0 14.143v3.327a2.468 2.468 0 0 0 1.566 2.314l10.638 4.27a11.929 11.929 0 0 0 8.86 0l10.639-4.27a2.47 2.47 0 0 0 1.566-2.314v-2.6a2.467 2.467 0 0 0-1.566-2.312l-10.639-4.27a11.9 11.9 0 0 0-8.86 0l-4.909 1.957 2.561 1.032 3.06-1.246a10.411 10.411 0 0 1 3.736-.712 10.226 10.226 0 0 1 3.7.712l10.638 4.27a.608.608 0 0 1 .392.569v2.6a.577.577 0 0 1-.392.57l-10.638 4.27a9.516 9.516 0 0 1-3.7.711 9.688 9.688 0 0 1-3.736-.711L2.277 18.04a.579.579 0 0 1-.391-.57v-2.632z" fill="#fff"/></symbol>
+		<symbol viewBox="0 0 36.41 36.34" id="sun" xmlns="http://www.w3.org/2000/svg"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M7.67 7.44l1.92-4.72 4.9.95L18.55.5l3.72 3.37 4.94-.89 1.64 4.84 4.73 1.82-1.01 4.95 3.34 3.77-3.8 3.68.88 5.21-4.57 1.43-1.71 4.78-4.9-.95-3.9 3.33-3.88-3.64-5.1 1.05-1.64-4.84-4.46-1.54L4 22.01.5 18.23l3.53-3.99-.98-5.26 4.62-1.54z"/><path d="M18.36 6.52h.15a11.53 11.53 0 0 1 11.32 11.73h0A11.53 11.53 0 0 1 18.1 29.57h-.15A11.53 11.53 0 0 1 6.63 17.84h0A11.53 11.53 0 0 1 18.36 6.52z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+		<symbol viewBox="0 0 35.22 32.89" id="volume-loud" xmlns="http://www.w3.org/2000/svg"><path d="M1.57 9.84h6.08l8.05-9a1.13 1.13 0 0 1 2 .75v29.58a1.17 1.17 0 0 1-2 .77l-7.75-8.79-7.36.07V10.85a1.06 1.06 0 0 1 .98-1.01z" fill="none" stroke="currentColor" stroke-miterlimit="10"/><path d="M22.8 9.48a7.41 7.41 0 0 1 5.06 7 7.41 7.41 0 0 1-5.05 7" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M26.17 3.7a13.77 13.77 0 0 1 8.55 12.75 13.77 13.77 0 0 1-8.41 12.69" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+		<symbol viewBox="0 0 30.7 32.96" id="volume-muted" xmlns="http://www.w3.org/2000/svg"><path d="M1.56 9.91h6.08l8.05-9a1.13 1.13 0 0 1 1.59-.15 1.13 1.13 0 0 1 .41.9v29.62a1.17 1.17 0 0 1-1.16 1.18 1.17 1.17 0 0 1-.89-.4l-7.78-8.79-7.36.07V10.97a1.07 1.07 0 0 1 1.06-1.06z" fill="none" stroke="currentColor" stroke-miterlimit="10"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M23.18 13.44l7.02 7.04M30.2 13.44l-7.03 7.04"/></symbol>
+</svg>
+
+<!--
+====================================================================================================
+-->
+		
+		<header>
+			<h1>SVG <code>&lt;symbol&gt;</code> sprite preview</h1>
+			<p>This preview features two methods of using the generated sprite in conjunction with inline SVG. Please have a look at the HTML source for further details and be aware of the following constraints:</p>
+			<ul>
+				<li>Your browser has to <a href="http://caniuse.com/#feat=svg-html5" target="_blank">support inline SVG</a> for these techniques to work.</li>
+				<li>The embedded sprite (A) slightly differs from the generated external one. Please <a href="https://github.com/jkphl/svg-sprite/blob/master/docs/configuration.md#defs--symbol-mode" target="_blank">see the documentation</a> for details on how to create such an embeddable sprite.</li>
+				<li>Internet Explorer up to version 11 doesn't support external sprites for use with inline SVG. For IE 9-11, you may polyfill this functionality with <a href="https://github.com/jonathantneal/svg4everybody" target="_blank">SVG for Everybody</a>.</li>
+			</ul>
+		</header>
+		<section>
+
+<!--
+	
+A) Inline SVG with embedded sprite
+====================================================================================================
+These SVG images make use of fragment identifiers (IDs) and are extracted out of the inline sprite
+embedded above. They may be styled via CSS.
+
+-->
+
+			<h3>A) Inline SVG with embedded sprite</h3>
+			<ul>
+
+				<li title="0_person">
+					<div class="icon-box">
+						
+						<!-- 0_person -->
+						<svg class="svg-0_person-dims">
+							<use xlink:href="#0_person"></use>
+						</svg>
+						
+					</div>
+					<h2>0_person</h2>
+				</li>
+				<li title="arrow-long-left">
+					<div class="icon-box">
+						
+						<!-- arrow-long-left -->
+						<svg class="svg-arrow-long-left-dims">
+							<use xlink:href="#arrow-long-left"></use>
+						</svg>
+						
+					</div>
+					<h2>arrow-long-left</h2>
+				</li>
+				<li title="arrow-long-right">
+					<div class="icon-box">
+						
+						<!-- arrow-long-right -->
+						<svg class="svg-arrow-long-right-dims">
+							<use xlink:href="#arrow-long-right"></use>
+						</svg>
+						
+					</div>
+					<h2>arrow-long-right</h2>
+				</li>
+				<li title="bars-sqr">
+					<div class="icon-box">
+						
+						<!-- bars-sqr -->
+						<svg class="svg-bars-sqr-dims">
+							<use xlink:href="#bars-sqr"></use>
+						</svg>
+						
+					</div>
+					<h2>bars-sqr</h2>
+				</li>
+				<li title="bookmark">
+					<div class="icon-box">
+						
+						<!-- bookmark -->
+						<svg class="svg-bookmark-dims">
+							<use xlink:href="#bookmark"></use>
+						</svg>
+						
+					</div>
+					<h2>bookmark</h2>
+				</li>
+				<li title="bookmark-hollow">
+					<div class="icon-box">
+						
+						<!-- bookmark-hollow -->
+						<svg class="svg-bookmark-hollow-dims">
+							<use xlink:href="#bookmark-hollow"></use>
+						</svg>
+						
+					</div>
+					<h2>bookmark-hollow</h2>
+				</li>
+				<li title="close">
+					<div class="icon-box">
+						
+						<!-- close -->
+						<svg class="svg-close-dims">
+							<use xlink:href="#close"></use>
+						</svg>
+						
+					</div>
+					<h2>close</h2>
+				</li>
+				<li title="info-round">
+					<div class="icon-box">
+						
+						<!-- info-round -->
+						<svg class="svg-info-round-dims">
+							<use xlink:href="#info-round"></use>
+						</svg>
+						
+					</div>
+					<h2>info-round</h2>
+				</li>
+				<li title="logo">
+					<div class="icon-box">
+						
+						<!-- logo -->
+						<svg class="svg-logo-dims">
+							<use xlink:href="#logo"></use>
+						</svg>
+						
+					</div>
+					<h2>logo</h2>
+				</li>
+				<li title="moon">
+					<div class="icon-box">
+						
+						<!-- moon -->
+						<svg class="svg-moon-dims">
+							<use xlink:href="#moon"></use>
+						</svg>
+						
+					</div>
+					<h2>moon</h2>
+				</li>
+				<li title="pano-controls">
+					<div class="icon-box">
+						
+						<!-- pano-controls -->
+						<svg class="svg-pano-controls-dims">
+							<use xlink:href="#pano-controls"></use>
+						</svg>
+						
+					</div>
+					<h2>pano-controls</h2>
+				</li>
+				<li title="sharing">
+					<div class="icon-box">
+						
+						<!-- sharing -->
+						<svg class="svg-sharing-dims">
+							<use xlink:href="#sharing"></use>
+						</svg>
+						
+					</div>
+					<h2>sharing</h2>
+				</li>
+				<li title="stone-logo">
+					<div class="icon-box">
+						
+						<!-- stone-logo -->
+						<svg class="svg-stone-logo-dims">
+							<use xlink:href="#stone-logo"></use>
+						</svg>
+						
+					</div>
+					<h2>stone-logo</h2>
+				</li>
+				<li title="sun">
+					<div class="icon-box">
+						
+						<!-- sun -->
+						<svg class="svg-sun-dims">
+							<use xlink:href="#sun"></use>
+						</svg>
+						
+					</div>
+					<h2>sun</h2>
+				</li>
+				<li title="volume-loud">
+					<div class="icon-box">
+						
+						<!-- volume-loud -->
+						<svg class="svg-volume-loud-dims">
+							<use xlink:href="#volume-loud"></use>
+						</svg>
+						
+					</div>
+					<h2>volume-loud</h2>
+				</li>
+				<li title="volume-muted">
+					<div class="icon-box">
+						
+						<!-- volume-muted -->
+						<svg class="svg-volume-muted-dims">
+							<use xlink:href="#volume-muted"></use>
+						</svg>
+						
+					</div>
+					<h2>volume-muted</h2>
+				</li>
+			</ul>
+
+<!--
+====================================================================================================
+-->
+
+		</section>
+		<section>
+
+<!--
+	
+B) Inline SVG with external sprite (IE 9-11 with polyfill only)
+====================================================================================================
+These SVG images make use of an URL + fragment identifiers (IDs) and refer to the regular external
+SVG sprite. They may be styled via CSS. (IE 9-11 with polyfill only)
+
+-->
+
+			<h3>B) Inline SVG with external sprite (IE 9-11 with polyfill only)</h3>
+			<ul>
+				
+				<li title="0_person">
+					<div class="icon-box">
+						
+						<!-- 0_person -->
+						<svg class="svg-0_person-dims">
+							<use xlink:href="svg/sprite.symbol.svg#0_person"></use>
+						</svg>
+						
+					</div>
+					<h2>0_person</h2>
+				</li>
+				<li title="arrow-long-left">
+					<div class="icon-box">
+						
+						<!-- arrow-long-left -->
+						<svg class="svg-arrow-long-left-dims">
+							<use xlink:href="svg/sprite.symbol.svg#arrow-long-left"></use>
+						</svg>
+						
+					</div>
+					<h2>arrow-long-left</h2>
+				</li>
+				<li title="arrow-long-right">
+					<div class="icon-box">
+						
+						<!-- arrow-long-right -->
+						<svg class="svg-arrow-long-right-dims">
+							<use xlink:href="svg/sprite.symbol.svg#arrow-long-right"></use>
+						</svg>
+						
+					</div>
+					<h2>arrow-long-right</h2>
+				</li>
+				<li title="bars-sqr">
+					<div class="icon-box">
+						
+						<!-- bars-sqr -->
+						<svg class="svg-bars-sqr-dims">
+							<use xlink:href="svg/sprite.symbol.svg#bars-sqr"></use>
+						</svg>
+						
+					</div>
+					<h2>bars-sqr</h2>
+				</li>
+				<li title="bookmark">
+					<div class="icon-box">
+						
+						<!-- bookmark -->
+						<svg class="svg-bookmark-dims">
+							<use xlink:href="svg/sprite.symbol.svg#bookmark"></use>
+						</svg>
+						
+					</div>
+					<h2>bookmark</h2>
+				</li>
+				<li title="bookmark-hollow">
+					<div class="icon-box">
+						
+						<!-- bookmark-hollow -->
+						<svg class="svg-bookmark-hollow-dims">
+							<use xlink:href="svg/sprite.symbol.svg#bookmark-hollow"></use>
+						</svg>
+						
+					</div>
+					<h2>bookmark-hollow</h2>
+				</li>
+				<li title="close">
+					<div class="icon-box">
+						
+						<!-- close -->
+						<svg class="svg-close-dims">
+							<use xlink:href="svg/sprite.symbol.svg#close"></use>
+						</svg>
+						
+					</div>
+					<h2>close</h2>
+				</li>
+				<li title="info-round">
+					<div class="icon-box">
+						
+						<!-- info-round -->
+						<svg class="svg-info-round-dims">
+							<use xlink:href="svg/sprite.symbol.svg#info-round"></use>
+						</svg>
+						
+					</div>
+					<h2>info-round</h2>
+				</li>
+				<li title="logo">
+					<div class="icon-box">
+						
+						<!-- logo -->
+						<svg class="svg-logo-dims">
+							<use xlink:href="svg/sprite.symbol.svg#logo"></use>
+						</svg>
+						
+					</div>
+					<h2>logo</h2>
+				</li>
+				<li title="moon">
+					<div class="icon-box">
+						
+						<!-- moon -->
+						<svg class="svg-moon-dims">
+							<use xlink:href="svg/sprite.symbol.svg#moon"></use>
+						</svg>
+						
+					</div>
+					<h2>moon</h2>
+				</li>
+				<li title="pano-controls">
+					<div class="icon-box">
+						
+						<!-- pano-controls -->
+						<svg class="svg-pano-controls-dims">
+							<use xlink:href="svg/sprite.symbol.svg#pano-controls"></use>
+						</svg>
+						
+					</div>
+					<h2>pano-controls</h2>
+				</li>
+				<li title="sharing">
+					<div class="icon-box">
+						
+						<!-- sharing -->
+						<svg class="svg-sharing-dims">
+							<use xlink:href="svg/sprite.symbol.svg#sharing"></use>
+						</svg>
+						
+					</div>
+					<h2>sharing</h2>
+				</li>
+				<li title="stone-logo">
+					<div class="icon-box">
+						
+						<!-- stone-logo -->
+						<svg class="svg-stone-logo-dims">
+							<use xlink:href="svg/sprite.symbol.svg#stone-logo"></use>
+						</svg>
+						
+					</div>
+					<h2>stone-logo</h2>
+				</li>
+				<li title="sun">
+					<div class="icon-box">
+						
+						<!-- sun -->
+						<svg class="svg-sun-dims">
+							<use xlink:href="svg/sprite.symbol.svg#sun"></use>
+						</svg>
+						
+					</div>
+					<h2>sun</h2>
+				</li>
+				<li title="volume-loud">
+					<div class="icon-box">
+						
+						<!-- volume-loud -->
+						<svg class="svg-volume-loud-dims">
+							<use xlink:href="svg/sprite.symbol.svg#volume-loud"></use>
+						</svg>
+						
+					</div>
+					<h2>volume-loud</h2>
+				</li>
+				<li title="volume-muted">
+					<div class="icon-box">
+						
+						<!-- volume-muted -->
+						<svg class="svg-volume-muted-dims">
+							<use xlink:href="svg/sprite.symbol.svg#volume-muted"></use>
+						</svg>
+						
+					</div>
+					<h2>volume-muted</h2>
+				</li>
+			</ul>
+
+<!--
+====================================================================================================
+-->
+
+		</section>
+		<footer>
+			<p>Generated at Mon, 15 Jun 2020 19:56:05 GMT by <a href="https://github.com/jkphl/svg-sprite" target="_blank">svg-sprite</a>.</p>
+		</footer>
+	</body>
+</html>
